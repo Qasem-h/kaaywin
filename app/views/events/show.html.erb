@@ -1,0 +1,33 @@
+<% provide(:title, @event.name) %>
+<br>
+<div class="table">
+	<aside class="span10" >
+		<section>
+		<center>
+		<table>
+		<th>id</th>
+		<th>Name</th>
+		<th>date</th>
+		<th>result</th>
+		<th>Active</th>
+		<th>League</th>
+		<th>Actions</th>
+		<tr>
+		<td><%= @event.id %> </td>
+		<td><%= @event.name %></td>
+			<td><%= @event.date %></td>
+			<td> o </td>
+			<td><%=@event.active %></td>
+			<td><%=League.find(@event.league_id).name%></td>
+			<td> View Edit Delete </td>
+			</tr>
+			
+			</table>
+<%= button_to('Add Bet', events_addbet_path(:id => @event.id), class: "btn btn-large")  %>
+</center>
+			
+		</section>
+	</aside>
+</div>
+
+

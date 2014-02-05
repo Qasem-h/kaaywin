@@ -1,0 +1,10 @@
+<% provide(:title, "All Sports") %>
+<h1>All Sports</h1>
+<center>  <li><%= link_to "Register a new Sport", new_sport_path%> </li>
+<%=will_paginate %>
+<ul class="sports">
+	<%= render @sports %>
+	</ul>
+
+	<%=will_paginate %>
+

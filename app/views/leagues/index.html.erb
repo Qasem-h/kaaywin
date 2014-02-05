@@ -1,0 +1,32 @@
+<% provide(:title, "All Leagues") %>
+<center><h1>All Leagues</h1>
+
+</center> 
+
+<%=will_paginate %>
+<br>
+<center>
+<div class = "table">
+
+	<aside class="span10" >
+		<section>
+		<table>
+	
+		<th>id</th>
+		<th>Name</th>
+		<th>Active</th>
+		<th>Sport</th>
+		<th>Actions</th>
+
+	<%= render @leagues %>
+
+
+		</table>
+	<%=will_paginate %>
+	<br>
+
+
+	</section>
+	</aside>
+	</div>
+</center>

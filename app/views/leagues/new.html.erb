@@ -1,0 +1,26 @@
+<% provide(:title, 'Register') %>
+<h1>Please enter league details: </h1>
+<div class = "row">
+	<div class = "span6 offset3">
+		<%=form_for(@league) do |f| %>
+			<%=render 'shared/error_messages_leagues' %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+			Sport
+			<%=collection_select(:league, :sport_id, Sport.all, :id, :name) %>
+			
+
+			
+			
+
+
+			<%=f.label :comments%>
+			<%=f.text_field :comments %>
+
+			<%=f.label :active%>
+			<%=check_box("league", "active", {}, "yes", "no") %>
+			<br><br>
+			<%=f.submit "Register this league", class: "btn btn-large btn-primary" %>
+			<%end%>
+		</div>
+	</div>	

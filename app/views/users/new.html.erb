@@ -1,0 +1,29 @@
+<% provide(:title, 'Register') %>
+<h1>Please enter user details: </h1>
+<div class = "row">
+	<div class = "span6 offset3">
+		<%=form_for(@user) do |f| %>
+			<%=render 'shared/error_messages' %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+
+			<%=f.label :email%>
+			<%=f.text_field :email %>
+
+			<%f.label :role %>
+			<select name = "role" >
+			<option value = "1">Admin </option>
+			<option value = "2">Supervisor</option>
+			<option value = "3">Operator</option>
+			</select>
+
+			<%=f.label :password %>
+			<%=f.password_field :password %>
+
+			<%=f.label :password_confirmation, "Confirmation" %>
+			<%=f.password_field :password_confirmation %>
+
+			<%=f.submit "Register the User", class: "btn btn-large btn-primary" %>
+			<%end%>
+		</div>
+	</div>	

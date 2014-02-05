@@ -1,0 +1,14 @@
+<% provide(:title, 'New Sport') %>
+<h1>Please enter Sport details: </h1>
+<div class = "row">
+	<div class = "span6 offset3">
+		<%=form_for(@sport) do |f| %>
+			<%=render 'shared/error_messages_sports' %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+			
+			
+			<%=f.submit "Register this sport", class: "btn btn-large btn-primary" %>
+			<%end%>
+		</div>
+	</div>	

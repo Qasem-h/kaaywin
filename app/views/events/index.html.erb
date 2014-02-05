@@ -1,0 +1,43 @@
+<% provide(:title, "All Events") %>
+<center><h1>All Events</h1>
+<%= button_to "Register a new event", new_event_path, method: :get%>
+</center> 
+
+
+<%=will_paginate %>
+<br>
+<div class = "table">
+
+
+
+	<aside class="span10" >
+		<section>
+		<table>
+	
+		<th>id</th>
+		<th>Name</th>
+		<th>date</th>
+		<th>result</th>
+		<th>Active</th>
+		<th>League</th>
+		<th>Actions</th>
+
+
+	<%= render @events %>
+	
+	</table>
+	<%=will_paginate %>
+	<br>
+
+
+</section>
+
+</aside>
+
+</div>
+
+
+
+
+
+
