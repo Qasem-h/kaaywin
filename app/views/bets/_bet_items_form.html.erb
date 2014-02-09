@@ -1,0 +1,25 @@
+<h2>Bet Items</h2>
+	<div class = "table">
+	<aside class = "span10">
+	<table style = "width:500px" border=1>
+	<tr><th>Name</th><th>Odds</th></tr>
+<%= f.fields_for :bet_items do |ff| %>
+
+	
+	<tr>
+	<td><%= ff.text_field :name %></td>
+	<td><%= ff.text_field :odds %></td>
+
+	
+	<% if ff.object.persisted? %>
+	<td>
+		<%= ff.check_box :_destroy %>
+		<%= ff.label :_destroy, "Destroy" %>
+</td>
+	<% end %>
+	</div>
+	<% end %>
+	</tr>
+	</table>
+	</aside>
+	</div>

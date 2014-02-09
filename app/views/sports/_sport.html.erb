@@ -1,11 +1,11 @@
 
-
-<li>
-<%=link_to sport.name, sport %>
+<tr>
+<td><%=sport.name%></td>
+<td><%=sport.created_at%></td>
 <% if current_user.role = 1%>
-<%= link_to "delete", sport, method: :delete, data: {confirm: "Are you sure?"} %>
-<%= link_to "edit", edit_sport_path(sport)  %>
+<td><%= link_to "delete", sport, method: :delete, data: {confirm: "Are you sure?"} %>
+<%= link_to "edit", edit_sport_path(sport)  %></td>
 <%end%>
 
+</tr>
 
-</li>

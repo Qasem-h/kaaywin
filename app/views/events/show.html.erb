@@ -24,6 +24,34 @@
 			
 			</table>
 <%= button_to('Add Bet', events_addbet_path(:id => @event.id), class: "btn btn-large")  %>
+
+<br>
+<% (@bets).each do |bet| %>
+	Name: <%=bet.name%>
+	<br>
+	<div class="table">
+	<aside class="span10" >
+	<table style = "width:500px" border=1>
+	<tr><th>Name</th>
+	<th>Odd</th>
+	</tr>
+	<% betItems = bet.bet_items%>
+  
+		
+		
+		<%betItems.each do |betItem| %>
+		<tr>
+			<td><%=betItem.name%></td>
+			<td><%=betItem.odds%></td>
+			</tr>
+
+			
+		<%end%>
+		</table>
+		<%= link_to "delete", bet, method: :delete, data: {confirm: "Are you sure?"} %>
+		</aside>
+		</div>
+	<%end%>
 </center>
 			
 		</section>

@@ -1,0 +1,27 @@
+
+sine
+<%= form_for @bet do |f| %>
+  d
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :bet_type%><br />
+    <%= f.text_field :bet_type%>
+  </p>
+  <h3>Odds</h3>
+  <% f.fields_for :bet_items do |ing| %>
+    <p>
+      <%= ing.label :name %>
+      <%= ing.text_field :name, :size => 50 %>
+      <%= ing.check_box :_destroy %>
+      <%= ing.label :_destroy, 'delete' %>
+    </p>
+  <% end -%>
+  <p>
+    <%= f.submit 'Add bet item', :name => "add_bet_items" %>
+    <%= f.submit 'Delete checked Odds', :name => "remove_ingredient" %>
+    <%= f.submit %>
+  </p>
+<% end %>

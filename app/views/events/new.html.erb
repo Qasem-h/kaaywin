@@ -7,10 +7,19 @@
 			<%= f.label :name %>
 			<%= f.text_field :name %>
 
-			
-			
+		
+			<% if @league_id.nil? %>
 			League
+			
 			<%=collection_select(:event, :league_id, League.all, :id, :name) %>
+			<%else%>
+			
+			<%=hidden_field_tag "lid", League.find(@league_id).id %>
+
+			
+
+			
+			<% end %>
 			<%=f.label :date%>
 
 			<div class="well">

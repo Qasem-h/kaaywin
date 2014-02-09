@@ -1,0 +1,2 @@
+<td><%=betItem.name%></td>
+<td><%=betItem.odd%></td>

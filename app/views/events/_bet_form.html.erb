@@ -1,0 +1,16 @@
+<h2>Bet</h2>
+<%= f.fields_for :bets do |ff| %>
+<div>
+	<%= ff.label :name %>
+	<%= ff.text_field :name %>
+
+	<%= ff.label :bet_type %>
+	<%= ff.text_field :bet_type %>
+     <%= render 'bets/bet_items_form', f: ff %>
+	<% if ff.object.persisted? %>
+		<%= ff.check_box :_destroy %>
+		<%= ff.label :_destroy, "Destroy" %>
+
+	<% end %>
+	</div>
+	<% end %>

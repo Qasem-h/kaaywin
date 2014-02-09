@@ -1,4 +1,5 @@
 Kaaywin::Application.routes.draw do
+  get "bets/destroy"
   get "sports/new"
   get "sports/edit"
   get "sports/create"
@@ -15,6 +16,10 @@ Kaaywin::Application.routes.draw do
   get "leagues/index"
   post "events/addbet"
   post "events/placebet"
+  post "events/new"
+  #post "events/removebet"
+ 
+
   resources :users
   resources :leagues
   resources :events
@@ -27,6 +32,9 @@ Kaaywin::Application.routes.draw do
   match '/contact', to: 'admin#contact', via: 'get'
   match '/about', to: 'admin#about', via: 'get'
   match '/register', to: 'users#new', via: 'get'
+  #match '/event/removebet', to: 'event#removebet', via: 'delete'
+
+
 
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'

@@ -3,11 +3,14 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @leagues = League.all
+   
+      @league_id = params[:id]  # we need this incase the event is beig created from the league menu
+    
   end
 
   def index
     @events = Event.paginate(page: params[:page])
-  end
+      end
 
   # this method will collect the event ID from the user then present the form 
   # that allows the placing of bets
@@ -27,14 +30,31 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 
+  def removebet
+    Bet.find(params[:id]).dexstroy
+  end
+
+
+  def showbets
+    @event = params[:eventid]
+
+    #check if this event has any bets
+    @bets = Bet.find_by_event_id(event.id)
+    # in the view we will only render the bets and thier respective bet items if !@bets.nil? is true
+  end
 
   def show
     @event = Event.find(params[:id])
+    @bets = @event.bets
   end
  
   def create
     @event = Event.new(user_params) # save the event
+
     @event.date = params[:date]
+    if !(params[:lid].nil?)
+      @event.league_id = params[:lid]
+    end
     
     if params[:event][:active]=="yes"
       @event.active = true;
@@ -58,6 +78,8 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
     @event.date = params[:date]
+   
+
     if params[:event][:active]=="yes"
       @event.active = true;
     end
@@ -81,6 +103,6 @@ class EventsController < ApplicationController
 
   private
   def user_params # to prevent mass assginement security vulnerabily
-    params.require(:event).permit(:name, :date, :league_id, :active )
+    params.require(:event).permit(:name, :date, :league_id, :active, bets_attributes:[:id,:name, :bet_type, :_destroy, bet_items_attributes:[:id,:name,:odds, :_destroy]])
   end
 end

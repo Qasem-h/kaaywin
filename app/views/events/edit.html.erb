@@ -31,8 +31,13 @@
 
 
 			<%=f.label :active%>
-			<%=check_box("event", "active", {}, "yes", "no") %>
+			<%=f.check_box :active %>
 			<br><br>
+
+			<%=render 'bet_form', f: f%>
+
+	
+
 			<%=f.submit "Save changes", class: "btn btn-large btn-primary" %>
 			<%end%>
 		</div>
