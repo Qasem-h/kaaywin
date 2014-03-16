@@ -1,0 +1,22 @@
+<h2>Bet<%=f.link_to_remove "-remove bet" %> </h2>
+
+	
+	<div class = "microposts">
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+
+	<%= f.label :bet_type %>
+	<%= f.text_field :bet_type %><br />
+	   
+	</div>
+     <%= f.fields_for :bet_items %>
+
+   <%=f.link_to_add "Add odd", :bet_items %> 
+	<br>
+	
+	
+	<br>
+	
+
+	
+	

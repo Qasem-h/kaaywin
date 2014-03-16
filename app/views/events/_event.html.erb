@@ -12,10 +12,13 @@
 <% if current_user.role = 1%>
 <td>
 
-<%= link_to "view", event_path(event)  %>
+
 <%= link_to "edit", edit_event_path(event)  %>
 
 <%= link_to "delete", event, method: :delete, data: {confirm: "Are you sure?"} %>
+<% if event.date < Time.now %>
+<%= link_to "enter results", "#" %>
+<%end%>
 </td></td>
 
 

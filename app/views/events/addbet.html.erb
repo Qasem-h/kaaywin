@@ -1,31 +1,50 @@
 <% provide(:title, "Add bet") %>
 
 		
+	<% @bets.each do |bet| %>
+	<%=nested_form_for (bet) do |ff| %>
+	
+	<table style = "width:320px" border=0>
 
-		<%=form_tag( "placebet", method: "post") do %>
-		<table><th><h1>Add bet </h1></th></table>
+	<tr><th><p align = "left"><%= ff.label :name %></p></th></tr>
+	<tr><td><%= ff.text_field :name %></td></tr>
 
-			<%= label_tag(:event, Event.find(@id).name) %>
-			<td><%=hidden_field_tag :eventid, @id, hidden: true %></td>
-		<%= label_tag(:betname, "Name") %>
-		<table border="0">
-		<td><%=text_field_tag "betname", "", size: 40 %></td>
-		</table>
+	<tr><th><p align = "left"><%= ff.label :bet_type %></p></th></tr>
+	<tr><td><%= ff.text_field :bet_type %></td></tr>
+	</table>
+	
 
-		<%= label_tag(:bettype, "Type") %>
-		<table border=0>
-		<td><%=text_field_tag"bettype", "", size: 40  %></td>
+	
+	
+	
+	<%=ff.fields_for :bet_item do |bet_item_form| %>
+	<table style = "width:300px" border=0><tr><th>Name</th><th>Odds</th></tr></table>
+		<table class = "bet_items" border = 1>
+	
 
-		<table border=0>
-		<th>Name</th>
-		<th>Od</th>
-		<tr><td><%=text_field_tag "betitem1name", "", size: 40 %></td><td><%=text_field_tag "betitem1odd", "", size: 40 %></td></tr>
 
-		<tr><td><%=text_field_tag "betitem21name", "", size: 40 %></td><td><%=text_field_tag "betitem2odd", "", size: 40 %></td></tr>
-		<tr><td><%=text_field_tag "betitem3name", "", size: 40 %></td><td><%=text_field_tag "betitem3odd", "", size: 40 %></td></tr>
-		</table>
-		<%= submit_tag("Submit") %>
-		<%end%>
-		<br><br><br>
+	<tr>
 
+	<td><%= bet_item_form.text_field :name %></td>
+	<td><%= bet_item_form.text_field :odds %></td>
+	<tr>
+	
+
+	
+	
+	
+	
+	
+	</table>
+	<%= ff.link_to_add 'Add', :bet_items %>
+	<br>
+	<br>
+	<% end %>
+	
+	
+	
+
+	<%=ff.submit "Create bet", class: "btn btn-large btn-primary" %>
+	<%end%>
+<%end%>
 

@@ -13,6 +13,15 @@
 //= require jquery
 //= require bootstrap
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 //= require bootstrap-datetimepicker
+//= require jquery.nested-fields
+//= require jquery_nested_form
+
+
+
+
+function remove_fields(link) {
+	$(link).current("input[type=hidden]").value = "1"
+	$(link).parent(".fields").hide();
+}

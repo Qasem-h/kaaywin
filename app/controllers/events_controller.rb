@@ -2,6 +2,10 @@ class EventsController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   def new
     @event = Event.new
+     1.times do 
+      bet = @event.bets.build
+      1.times {bet.bet_items.build}
+    end
     @leagues = League.all
    
       @league_id = params[:id]  # we need this incase the event is beig created from the league menu
@@ -10,12 +14,15 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.paginate(page: params[:page])
-      end
+  end
 
   # this method will collect the event ID from the user then present the form 
   # that allows the placing of bets
   def addbet
-    @id = params[:id]
+   # @id = params[:id]
+
+    
+  
   end
 
   #this method actually carries out the placing of bets
@@ -73,6 +80,8 @@ class EventsController < ApplicationController
 
   def edit # edit league details
     @event = Event.find(params[:id])
+   # @event.bets.build
+
   end
 
   def update

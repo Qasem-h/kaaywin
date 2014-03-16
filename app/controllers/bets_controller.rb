@@ -11,6 +11,9 @@ class BetsController < ApplicationController
   	redirect_to event_path(event_id)
   end
 
+  def create
+  dgshsc 
+  end
 
 
 
