@@ -1,0 +1,32 @@
+
+
+	
+	
+	
+	<%= f.text_field :name %>
+
+	
+	 <aside class = "span10">
+	<table style = "width:500px" border=1>
+	
+	<tr><th>Pick</th></tr>
+
+	<%= f.fields_for :bet_items do |f| %>
+	
+     <%= render 'events/bet_item_results' , :f =>f%>
+    
+     <%end%>
+     
+
+	</table>
+	</aside>
+
+
+   
+	<br>
+	
+	
+	<br>
+	
+
+	

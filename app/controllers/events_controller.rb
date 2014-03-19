@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :enter_result]
   def new
     @event = Event.new
      1.times do 
@@ -16,14 +16,36 @@ class EventsController < ApplicationController
     @events = Event.paginate(page: params[:page])
   end
 
+  def enter_result  # used to enter the result on completed events
+    @event = Event.find(params[:id])
+    @result = Result.new
+    @result.event = @event
+
+  end
+
+
   # this method will collect the event ID from the user then present the form 
-  # that allows the placing of bets
+  # that allows the placing of bets----> currently not used
   def addbet
+
+    @event = Event.find(params[:id])
    # @id = params[:id]
 
-    
-  
+      
   end
+
+  def save_result  # save the results of the event
+    @event = Event.find(params[:id])
+      if @event.update_attributes(result_params)
+      flash[:success] = "Results Entered"
+      redirect_to events_url
+    else
+      redirect_to 'enter_results'
+    end
+    
+
+  end
+
 
   #this method actually carries out the placing of bets
   def placebet
@@ -112,6 +134,11 @@ class EventsController < ApplicationController
 
   private
   def user_params # to prevent mass assginement security vulnerabily
-    params.require(:event).permit(:name, :date, :league_id, :active, bets_attributes:[:id,:name, :bet_type, :_destroy, bet_items_attributes:[:id,:name,:odds, :_destroy]])
+    params.require(:event).permit(:name, :date, :league_id, :active, bets_attributes:[:id,:name, :bet_type, :_destroy, bet_items_attributes:[:id,:name,:odds,:_destroy]])
   end
+
+  def result_params # prevent mass assignments and only update specific attributes of the event related to saving results
+    params.require(:event).permit(bets_attributes:[:id,bet_items_attributes:[:id,:name,:active]])
+  end
+
 end

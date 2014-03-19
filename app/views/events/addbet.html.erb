@@ -3,7 +3,7 @@
 		
 	<% @bets.each do |bet| %>
 	<%=nested_form_for (bet) do |ff| %>
-	
+	<%=render 'shared/error_messages_bets' %>
 	<table style = "width:320px" border=0>
 
 	<tr><th><p align = "left"><%= ff.label :name %></p></th></tr>

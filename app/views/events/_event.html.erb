@@ -17,7 +17,7 @@
 
 <%= link_to "delete", event, method: :delete, data: {confirm: "Are you sure?"} %>
 <% if event.date < Time.now %>
-<%= link_to "enter results", "#" %>
+<%= link_to "enter results", result_path(:id => event.id) %>
 <%end%>
 </td></td>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140205220129) do
+ActiveRecord::Schema.define(version: 20140318195424) do
 
   create_table "bet_items", force: true do |t|
     t.string   "name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140205220129) do
     t.integer  "bet_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",     default: false
   end
 
   add_index "bet_items", ["bet_id"], name: "index_bet_items_on_bet_id", using: :btree
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140205220129) do
     t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "result"
   end
 
   add_index "events", ["name"], name: "index_events_on_name", using: :btree
@@ -51,6 +53,13 @@ ActiveRecord::Schema.define(version: 20140205220129) do
     t.datetime "updated_at"
     t.boolean  "active",     default: true
     t.integer  "sport_id"
+  end
+
+  create_table "results", force: true do |t|
+    t.string   "title"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sports", force: true do |t|

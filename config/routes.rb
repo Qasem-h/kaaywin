@@ -15,14 +15,23 @@ Kaaywin::Application.routes.draw do
   get "leagues/distroy"
   get "leagues/index"
   post "events/addbet"
+  get "events/:id", to: 'events#enter_result', as: 'result'
   post "events/placebet"
   post "events/new"
+  patch "events/save_result/:id", to:'events#save_result', as: 'save_result'
   #post "events/removebet"
  
 
   resources :users
+  resource :results
   resources :leagues
-  resources :events
+
+  resources :events do
+    member do
+      put 'save_result'
+    end
+  end
+
   resources :sports
   resources :bets
   resources :sessions, only: [:new, :create, :destroy]

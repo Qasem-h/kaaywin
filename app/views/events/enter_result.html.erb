@@ -1,0 +1,30 @@
+<% provide(:title, "Result for:"+@event.name) %>
+<center><h1><%=@event.name%></h1>
+
+</center> 
+
+
+
+<br>
+
+<%= nested_form_for @event, :url => url_for(:controller => "events", :action => "save_result") do |f|%>
+	<%=render 'shared/error_messages_events' %>
+	<%= f.label :result %>
+	<%= f.text_field :result %>
+
+
+
+	<%= f.fields_for :bets do |bet|%>
+	<%= render 'events/bet_results', :f =>bet %>
+	<%end%>
+
+	<%=f.submit "Submit Results", class: "btn btn-large btn-primary" %>
+
+	<%end%>
+
+
+
+
+
+
+
