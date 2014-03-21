@@ -14,7 +14,10 @@ Kaaywin::Application.routes.draw do
   get "leagues/create"
   get "leagues/distroy"
   get "leagues/index"
+  get "events/test_boot_strap"
+ post "events/search"
   post "events/addbet"
+
   get "events/:id", to: 'events#enter_result', as: 'result'
   post "events/placebet"
   post "events/new"

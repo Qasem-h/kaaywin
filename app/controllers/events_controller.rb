@@ -23,6 +23,23 @@ class EventsController < ApplicationController
 
   end
 
+  def search # method used to seach for a event
+    searchstring = "%"+params[:q]+"%"
+    @events = Event.where(Event.arel_table[:name].matches(searchstring))
+  
+
+    if !@events
+     
+  
+      flash[:warning] = "Event not found"
+      redirect_to events_url
+   
+    end
+
+
+  end
+
+
 
   # this method will collect the event ID from the user then present the form 
   # that allows the placing of bets----> currently not used
@@ -125,7 +142,9 @@ class EventsController < ApplicationController
     end
   end
 
+  def test_boot_strap
 
+  end
   def destroy
     Event.find(params[:id]).destroy
     flash[:success] = "Event successfully deleted"

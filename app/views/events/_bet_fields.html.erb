@@ -9,11 +9,14 @@
 	<%= f.text_field :bet_type %><br />
 	   
 	</div>
+	<aside class = "span10">
+		<table style = "width:400px" border=0><tr><th>   Name</th><th>Odds</th></tr></table>
+		</aside>
      <%= f.fields_for :bet_items %>
 
    <%=f.link_to_add "Add odd", :bet_items %> 
 	<br>
-	
+
 	
 	<br>
 	
