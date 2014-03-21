@@ -1,0 +1,47 @@
+<% provide(:title, "All Events") %>
+<center><h1>All Events</h1>
+<%= button_to "Register a new event", new_event_path, method: :get%>
+</center> 
+
+
+
+<br>
+<div class = "table-responsive">
+  <table class = "table table-stripped">
+
+
+
+	<aside class="span14" >
+		<section>
+		<table class = "table table-stripped">
+		<thead>
+		<th>id</th>
+		<th>Name</th>
+		<th>date</th>
+		<th>result</th>
+		<th>Active</th>
+		<th>League</th>
+		<th>Actions</th>
+
+		</thead>
+		<tbody>
+	<%= render @events %>
+	</tbody>
+	
+	</table>
+
+	<br>
+
+
+</section>
+
+</aside>
+</table>
+
+</div>
+
+
+
+
+
+
