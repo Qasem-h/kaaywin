@@ -5,7 +5,7 @@ class Event < ActiveRecord::Base
 	has_many :bets
 	has_many :bet_items, through: :bets
 	
-	has_one :result
+	
 	accepts_nested_attributes_for :bets, :allow_destroy => true, :reject_if => :all_blank
 
 end

@@ -18,17 +18,19 @@ class EventsController < ApplicationController
 
   def enter_result  # used to enter the result on completed events
     @event = Event.find(params[:id])
-    @result = Result.new
-    @result.event = @event
+   
 
+  end
+
+
+  def result # present the results tab
+    @sports = League.all
   end
 
   def search # method used to seach for a event
     searchstring = "%"+params[:q]+"%"
     @events = Event.where(Event.arel_table[:name].matches(searchstring))
-  
-
-    if !@events
+      if !@events
      
   
       flash[:warning] = "Event not found"
@@ -157,7 +159,7 @@ class EventsController < ApplicationController
   end
 
   def result_params # prevent mass assignments and only update specific attributes of the event related to saving results
-    params.require(:event).permit(bets_attributes:[:id,bet_items_attributes:[:id,:name,:active]])
+    params.require(:event).permit(:result, bets_attributes:[:id,bet_items_attributes:[:id,:name,:active]])
   end
 
 end

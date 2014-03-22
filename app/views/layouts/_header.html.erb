@@ -1,7 +1,8 @@
-    <body>
+
 
 
       <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+
        <div class = "container" >
 
 
@@ -47,6 +48,7 @@
                     <li><%= link_to "Sports management", sports_path %> </li>
                     <li><%= link_to "League management", leagues_path %> </li>
                     <li><%= link_to "Event management", events_path %> </li>
+                     <li><%= link_to "Results", "/events/results" %> </li>
                     <li class="divider"></li>
                     
                   </ul>
@@ -103,11 +105,13 @@
 
 
     </div>
-   
-      <div class="col-xs-3 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="list-group">
+
+       <% if signed_in? %>
+    <br>
+      <div class="col-xs-1 col-sm-2 sidebar-offcanvas" id="sidebar" role="navigation">
+        <div class="list-group">
           <ul>
-          <li>
+         
             <li>Logged in as: <variable><%=current_user.name%></variable></li>
             <li>User type is : <variable><%=current_user.role%></variable></li>
             <li>Date is : <variable><%=Time.now%></variable></li>
@@ -117,18 +121,19 @@
                   <%= text_field_tag(:q)%>
                   <%=submit_tag("search")%>
                   <%end%>
-
+            </li>
+            <li>
                   <%=form_tag(controller: "events", action: "search", method: "get" ) do %>
                   <%= label_tag(:q, "Ticket id:") %>
                   <%= text_field_tag(:q)%>
                   <%=submit_tag("search")%>
                   <%end%>
 
+            </li>
 
-          </div>
-        </div><!--/span-->
-      </div><!--/row-- -->
-   
-    
-
-</body>
+          </ul>
+        </div>
+      </div><!--/span-->
+  
+        <%end%>
+     

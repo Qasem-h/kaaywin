@@ -1,3 +1,6 @@
+<div class= "container">
+<div class = "row">
+<div class = "span10">
 <% provide(:title, "All Leagues") %>
 <center><h1>All Leagues</h1>
 <%= button_to "Register a new League", new_league_path, method: :get %>
@@ -6,27 +9,31 @@
 <%=will_paginate %>
 <br>
 <center>
-<div class = "table">
+<div class = "kaaywintable1">
+ <table>
 
-	<aside class="span10" >
-		<section>
-		<table>
 	
-		<th>id</th>
-		<th>Name</th>
-		<th>Active</th>
-		<th>Sport</th>
-		<th>Actions</th>
-
+		
+		
+	<tr>
+		<td>id</td>
+		<td>Name</td>
+		<td>Active</td>
+		<td>Sport</td>
+		<td>Actions</td>
+	</tr>
 	<%= render @leagues %>
 
 
-		</table>
+		
 	<%=will_paginate %>
 	<br>
 
 
-	</section>
-	</aside>
+
+	</table>
 	</div>
 </center>
+</div>
+</div>
+</div>

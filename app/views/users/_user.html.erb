@@ -1,8 +1,10 @@
-<li>
 
-<%=link_to user.name, user %>
+<tr>
+
+<td><%=link_to user.name, user %></td>
+<td><%=user.email %></td>
 <% if current_user.role = 1 && !current_user?(user) %>
-<%= link_to "delete", user, method: :delete, data: {confirm: "Are you sure?"} %>
+<td><%= link_to "delete", user, method: :delete, data: {confirm: "Are you sure?"} %></td>
 <%end%>
 
-</li>
+</tr>

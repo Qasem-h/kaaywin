@@ -6,7 +6,8 @@
 
 
 <br>
-
+<div class="row">
+	<div class="span6 offset3">
 <%= nested_form_for @event, :url => url_for(:controller => "events", :action => "save_result") do |f|%>
 	<%=render 'shared/error_messages_events' %>
 	<%= f.label :result %>
@@ -17,12 +18,23 @@
 	<%= f.fields_for :bets do |bet|%>
 	<%= render 'events/bet_results', :f =>bet %>
 	<%end%>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 	<%=f.submit "Submit Results", class: "btn btn-large btn-primary" %>
 
 	<%end%>
 
-
+</div>
+</div>
 
 
 

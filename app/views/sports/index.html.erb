@@ -1,19 +1,20 @@
+<div class= "container">
+<div class = "row">
+<div class = "span10">
 <% provide(:title, "All Sports") %>
 <center> <h1>All Sports</h1>
 <%= button_to "Register a new Sport", new_sport_path, method: :get %> 
 </center> 
 <%=will_paginate %>
-<div class="table">
+<div class="kaaywintable1">
 
-<aside class="span10" >
-		<section>
 		<table>
 	
-		
-		<th>Name</th>
-		<th>Date Created</th>
-		<th>Actions</th>
-
+		<tr>
+		<td>Name</td>
+		<td>Date Created</td>
+		<td>Actions</td>
+		</tr>
 
 	<%= render @sports %>
 	</table>
@@ -21,8 +22,11 @@
 
 	<%=will_paginate %>
 	<br>
-	</section>
-	</aside>
+	
 	</div>
+	</div>
+	</div>
+	</div>
+	
 
 
