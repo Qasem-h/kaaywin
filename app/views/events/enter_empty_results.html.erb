@@ -1,0 +1,47 @@
+<% provide(:title, "Results") %>
+<div class= "container">
+<div class = "row">
+<div class = "span5">
+
+
+<%=form_for :event, :url => url_for(:controller => "events",:action => 'save_results') do %>
+
+
+  <% @events.each do |event| %>
+    
+   	<%= fields_for "event[]", event do |event_fields| %>
+
+   		<%= nested_form_for event do%>
+			<%= event_fields.label :Name %>
+			 <%= event_fields.text_field :name %>
+			 <%= event_fields.label :result %>
+			 <%= event_fields.text_field :result %>
+			 <%= event_fields.fields_for  :bets do |bet|%>
+		 	    <%= render 'events/bet_results', :f =>bet %>
+	   		 <%end%>
+       <%end%>
+    <%end%>
+   
+   <%end%>
+
+ <%= submit_tag 'Update' %>
+ <%end%>
+	
+	
+	
+
+
+
+
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+

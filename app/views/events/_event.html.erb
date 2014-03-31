@@ -1,9 +1,9 @@
 
 <tr>
 <td><%=event.id%></td>
-<td><%=link_to event.name, event_path(event)%></td>
+<td><%=link_to event.name, event_path(event), :remote =>true%></td>
 <td><%=event.date%></td>
-<td>x</td>
+<td><%=event.result%></td>
 
 <td><%=event.active %></td>
 <td><%=League.find(event.league_id).name %></td>

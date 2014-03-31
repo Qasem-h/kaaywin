@@ -57,7 +57,20 @@ class LeaguesController < ApplicationController
   end
 
   def index
-  	@leagues = League.paginate(page: params[:page])
+    @leagues = nil;
+    @league = League.first
+    if params[:id].nil?  # if the user intended to list ALL leagues
+  	   @leagues = League.all
+     else  # the user selected a sport and needs to list its leagues
+      @leagues = Sport.find(params[:id]).leagues
+  
+    end
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
+   
   end
 
   private

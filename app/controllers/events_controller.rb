@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :enter_result]
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :enter_result, :new]
   def new
     @event = Event.new
      1.times do 
@@ -13,17 +13,39 @@ class EventsController < ApplicationController
   end
 
   def index
-    @events = Event.paginate(page: params[:page])
+   
+    @events = nil
+    if params[:id].nil?
+       @events = Event.all  # if the user didn't select a particluar league then list all events
+     else
+      @events = Event.been_played(params[:id])
+    end
+    respond_to do |format| 
+        format.js
+        format.html
+      end
   end
 
   def enter_result  # used to enter the result on completed events
     @event = Event.find(params[:id])
+    respond_to do |format|
+      format.js
+      format.html
+    end
    
+
+  end
+
+  #find all events that have their result values empty so we can enter them
+  def enter_empty_results
+
+   @events = Event.played_not_entered
 
   end
 
 
   def result # present the results tab
+    store_location
     @sports = League.all
   end
 
@@ -57,7 +79,21 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
       if @event.update_attributes(result_params)
       flash[:success] = "Results Entered"
-      redirect_to events_url
+      redirect_to results_path
+    else
+      redirect_to 'enter_empty_results'
+    end
+    
+
+  end
+
+    def save_results  # when many results are being updated at once
+      
+       
+
+      if Event.update(params[:event].keys, params[:event].values)
+      flash[:success] = "Results Entered"
+      redirect_to :back
     else
       redirect_to 'enter_results'
     end
@@ -94,6 +130,10 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @bets = @event.bets
+
+    respond_to do |format|
+      format.js
+    end
   end
  
   def create
@@ -138,7 +178,7 @@ class EventsController < ApplicationController
     end 
     if @event.update_attributes(user_params)
       flash[:success] = "Event updated"
-      redirect_to events_url
+      redirect_to events_path
     else
       render 'edit'
     end
@@ -150,7 +190,7 @@ class EventsController < ApplicationController
   def destroy
     Event.find(params[:id]).destroy
     flash[:success] = "Event successfully deleted"
-    redirect_to events_url
+    redirect_to :back
   end
 
   private

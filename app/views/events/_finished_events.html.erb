@@ -1,0 +1,24 @@
+<div id = "replaceable">
+<%events = Event.played_not_entered%>
+<div class = "kaaywintable1"%>
+  <table>
+    <tr>
+    <td>Event name</td>
+    <td>league name</td>
+    <td>Date played</td>
+    <td>Actions</td>
+    </tr>
+      <%events.each do |event|%>
+        <tr>
+        <td><%=event.name%></td>
+        <td><%=event.league.name%></td>
+        <td><%=event.date%></td>
+        <td><%=link_to "enter results", result_path(event.id)%></td>
+        </tr>
+      <%end%>
+   </table>
+  </div>
+
+
+
+

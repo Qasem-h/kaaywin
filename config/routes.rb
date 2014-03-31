@@ -16,6 +16,9 @@ Kaaywin::Application.routes.draw do
   get "leagues/index"
   get "events/test_boot_strap"
   get "events/results" , to:'events#results', as: 'results'
+   get "leagues/events/:id" , to:'events#index', as: 'league_events'
+  get "/leagues/:id", to: 'leagues#index', as: 'sport_leagues'
+  get "/events/enter_empty_results", to: "events#enter_empty_results", as: "empty_results"
  post "events/search"
   post "events/addbet"
 
@@ -23,6 +26,7 @@ Kaaywin::Application.routes.draw do
   post "events/placebet"
   post "events/new"
   patch "events/save_result/:id", to:'events#save_result', as: 'save_result'
+    post "events/save_results", to:'events#save_results', as: 'save_results'
   #post "events/removebet"
  
 

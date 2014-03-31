@@ -1,19 +1,23 @@
 <% provide(:title, "All Events") %>
 <div id = "replaceable">
-<center><h1>All Events</h1>
+<div class= "container">
+<div class = "row">
+<div class = "span10">
+<center><h1>Played Events</h1>
 
-<%= button_to "Register a new event", new_event_path, method: :get%>
 </center> 
 
 
 
 <br>
 <div class = "kaaywintable1">
-  <table>
 
 
 
-	<tr>
+	
+		
+		<table>
+	
 		<td>id</td>
 		<td>Name</td>
 		<td>date</td>
@@ -22,20 +26,24 @@
 		<td>League</td>
 		<td>Actions</td>
 
+
 	<%= render @events %>
 	
 	</table>
-
+	
 	<br>
 
 
 
 
 
-</table>
-
 </div>
-</tr>
+</div>
+</div>
+</div>
+</div>
+
+
 
 
 
