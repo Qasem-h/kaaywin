@@ -1,5 +1,9 @@
 <% provide(:title, "All Events") %>
+
 <div id = "replaceable">
+<div class= "container">
+<div class = "row">
+<div class = "span10">
 <center><h1>All Events</h1>
 
 <%= button_to "Register a new event", new_event_path, method: :get%>
@@ -21,7 +25,7 @@
 		<td>Active</td>
 		<td>League</td>
 		<td>Actions</td>
-
+		</tr>
 	<%= render @events %>
 	
 	</table>
@@ -35,7 +39,11 @@
 </table>
 
 </div>
-</tr>
+</div>
+</div>
+</div>
+</div>
+
 
 
 

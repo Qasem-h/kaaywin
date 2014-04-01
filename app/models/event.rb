@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
 	validates :name, presence: true
 	validates :date, presence: true
 	belongs_to :league
-	has_many :bets
+	has_many :bets,dependent: :destroy
 	has_many :bet_items, through: :bets
 	
 	

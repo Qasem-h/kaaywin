@@ -52,11 +52,12 @@ class EventsController < ApplicationController
   def search # method used to seach for a event
     searchstring = "%"+params[:q]+"%"
     @events = Event.where(Event.arel_table[:name].matches(searchstring))
-      if !@events
+      if (!@events) 
+           flash[:warning] = "Event not found"
+           redirect_to events_url
+
+       
      
-  
-      flash[:warning] = "Event not found"
-      redirect_to events_url
    
     end
 

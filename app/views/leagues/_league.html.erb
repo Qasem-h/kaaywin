@@ -4,7 +4,7 @@
 <td><%=league.id%></td>
 <td><%= link_to league.name, league_events_path(league.id), :remote => true%></td>
 <td><%=league.active%></td>
-<td><%=Sport.find(league.sport_id).name %></td>
+<td><%=league.sport.name %></td>
 <td>
 
 <%= link_to "edit", edit_league_path(league)  %>

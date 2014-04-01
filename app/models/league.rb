@@ -1,6 +1,6 @@
 class League < ActiveRecord::Base
 
-	before_save {self.name = name.downcase}
+	
 	
 	validates :name, presence: true, length: {maximum: 100}
 
