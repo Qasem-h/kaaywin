@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :enter_result, :new]
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :enter_result, :new, :enter_result, :enter_empty_results,:enter_results, :result, :search, :search_by_id, :save_result, :show]
   def new
     @event = Event.new
      1.times do 
@@ -47,6 +47,13 @@ class EventsController < ApplicationController
   def result # present the results tab
     store_location
     @sports = League.all
+    @status = "active"
+  end
+
+   def results # present the results tab
+    store_location
+    @sports = League.all
+    @status = "active"
   end
 
   def search # method used to seach for a event

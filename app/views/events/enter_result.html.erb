@@ -19,6 +19,7 @@
 	<%= f.fields_for :bets do |bet|%>
 	<%= render 'events/bet_results', :f =>bet %>
 	<%end%>
+	<br>
 <br>
 <br>
 <br>
@@ -29,8 +30,8 @@
 <br>
 <br>
 <br>
-
-	<%=f.submit "Submit Results", class: "btn btn-large btn-primary" %>
+	
+<%=f.submit "Submit Results", class: "btn btn-large btn-primary" %>
 
 	<%end%>
 

@@ -16,7 +16,7 @@
 <%= link_to "edit", edit_event_path(event)  %>
 <%= link_to "delete", event, method: :delete, data: {confirm: "Are you sure?"} %>
 <%end%>
-<% if event.date < Time.now %>
+<% if event.date < Time.now and fromResultsMenu%>
 <%= link_to "enter results", result_path(:id => event.id) %>
 <%end%>
 </td></td>
