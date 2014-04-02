@@ -63,7 +63,7 @@ class EventsController < ApplicationController
   end
      def search_by_id # method used to seach for a event
     searchstring = params[:q].to_i
-    @events = Event.where(Event.arel_table[:id].matches(searchstring))
+    @events = Event.where(:id => searchstring)
       if (!@events) 
            flash[:warning] = "Event not found"
            redirect_to events_url
