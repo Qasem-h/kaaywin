@@ -1,18 +1,22 @@
-
-
 <tr>
 <td><%=league.id%></td>
-<td><%= link_to league.name, league_events_path(league.id), :remote => true%></td>
+<td>
+<%if fromResultsMenu%><%= link_to league.name, league_events_path(league.id), :remote => true%>
+<%else%>
+<%=league.name%>
+<%end%>
+</td>
 <td><%=league.active%></td>
 <td><%=league.sport.name %></td>
 <td>
 
+<%if !fromResultsMenu %>
 <%= link_to "edit", edit_league_path(league)  %>
 <%= link_to "add event", new_event_path(:id => league.id) %>
 <%= link_to "delete", league, method: :delete, data: {confirm: "Are you sure?"} %>
-
+<%end%>
 </td>
 
+</tr>
 
 
-</li>

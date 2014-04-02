@@ -8,14 +8,15 @@
 
 
 <br>
+<%=button_to "<<back to leagues", leagues_path, method: :get, :remote => true %>
 <div class = "kaaywintable1">
 
-
+<%fromResultsMenu = true %>
 
 	
 		
 		<table>
-	
+		<tr>
 		<td>id</td>
 		<td>Name</td>
 		<td>date</td>
@@ -23,9 +24,9 @@
 		<td>Active</td>
 		<td>League</td>
 		<td>Actions</td>
+		</tr>
 
-
-	<%= render @events %>
+	<%= render @events, :fromResultsMenu => fromResultsMenu %>
 	
 	</table>
 	

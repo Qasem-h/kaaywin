@@ -4,6 +4,6 @@ class BetItem < ActiveRecord::Base
 	validates :odds, presence: true
 	validates_numericality_of :odds
 
-	before_save {self.odds = self.odds.to_f.round(2)}
+	before_save {self.odds = sprintf "%.2f", self.odds.to_f}
 	
 end

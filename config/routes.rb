@@ -1,4 +1,5 @@
 Kaaywin::Application.routes.draw do
+  
   get "bets/destroy"
   get "sports/new"
   get "sports/edit"
@@ -14,12 +15,15 @@ Kaaywin::Application.routes.draw do
   get "leagues/create"
   get "leagues/distroy"
   get "leagues/index"
+  get "main/index"
   get "events/test_boot_strap"
   get "events/results" , to:'events#results', as: 'results'
    get "leagues/events/:id" , to:'events#index', as: 'league_events'
   get "/leagues/:id", to: 'leagues#index', as: 'sport_leagues'
+  get "leagues/", to: 'leagues#index', as: 'back_to_sport_leagues'
   get "/events/enter_empty_results", to: "events#enter_empty_results", as: "empty_results"
  post "events/search"
+ post "events/search_by_id"
   post "events/addbet"
 
   get "events/:id", to: 'events#enter_result', as: 'result'

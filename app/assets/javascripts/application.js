@@ -17,6 +17,7 @@
 //= require bootstrap-datetimepicker
 //= require jquery.nested-fields
 //= require jquery_nested_form
+//= require jquery-ui-timepicker-addon
 
 
 

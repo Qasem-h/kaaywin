@@ -1,6 +1,6 @@
 
 
-
+    <% if @front_office.nil? %>
       <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
 
        <div class = "container" >
@@ -123,6 +123,13 @@
                   <%=submit_tag("search")%>
                   <%end%>
             </li>
+            
+            <li>
+                  <%=form_tag(controller: "events", action: "search_by_id", method: "get" ) do %>
+                  <%= label_tag(:q, "Event id:") %>
+                  <%= text_field_tag(:q)%>
+                  <%=submit_tag("search")%>
+                  <%end%>
             <li>
                   <%=form_tag(controller: "events", action: "search", method: "get" ) do %>
                   <%= label_tag(:q, "Ticket id:") %>
@@ -132,9 +139,15 @@
 
             </li>
 
+
+            </li>
+
           </ul>
         </div>
       </div><!--/span-->
   
         <%end%>
      
+<%else%>
+<body background="/assets/bground.jpg">
+<%end%>

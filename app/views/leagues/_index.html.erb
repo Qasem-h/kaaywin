@@ -1,16 +1,14 @@
 <div id = "replaceable">
 
-<% provide(:title, "All Leagues") %>
-
-<div id = "replaceable">
 
 <center><h1>Leagues</h1>
 
 </center> 
 
 
-<br>
+<%fromResultsMenu = true%>
 <center>
+<%=button_to "<<back to sport", results_path, method: :get %>
 <div class = "kaaywintable1">
  <table>
 
@@ -24,7 +22,7 @@
 		<td>Sport</td>
 		<td>Actions</td>
 	</tr>
-	<%= render @leagues %>
+	<%= render @leagues, :fromResultsMenu => fromResultsMenu %>
 
 
 		
@@ -34,7 +32,10 @@
 
 
 	</table>
+
 	</div>
+	<br>
+	<%=button_to "<<back to sports",results_path, method: :get  %>
 </center>
 </div>
 </div>

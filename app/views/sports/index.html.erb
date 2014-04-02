@@ -8,7 +8,7 @@
 </center> 
 
 <div class="kaaywintable1">
-
+<%fromResultsMenu=false%>
 		<table>
 	
 		<tr>
@@ -17,7 +17,7 @@
 		<td>Actions</td>
 		</tr>
 
-	<%= render @sports %>
+	<%= render @sports, :fromResultsMenu => fromResultsMenu %>
 	</table>
 	
 

@@ -1,8 +1,13 @@
 
 <tr>
-<td><%=link_to sport.name, sport_leagues_path(sport.id), :remote =>true%></td>
+<td>
+<%if fromResultsMenu%><%=link_to sport.name, sport_leagues_path(sport.id), :remote =>true%><%else%>
+
+<%=sport.name%>
+<%end%>
+</td>
 <td><%=sport.created_at%></td>
-<% if current_user.role = 1%>
+<% if current_user.role = 1 and !fromResultsMenu %>
 <td><%= link_to "delete", sport, method: :delete, data: {confirm: "Are you sure?"} %>
 <%= link_to "edit", edit_sport_path(sport)  %></td>
 <%end%>

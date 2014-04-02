@@ -5,16 +5,17 @@
 <div class = "span20">
  <div class = "tabbable">
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#results" data-toggle="tab">All completed Events</a></li>
   
-  <li><a href="#pending-entry" data-toggle="tab">All Pending result entries</a></li>
+  
+  <li class="active"><a href="#pending-entry" data-toggle="tab">All Pending result entries</a></li>
+  <li><a href="#results" data-toggle="tab">All completed Events</a></li>
 </ul>
 
 <!-- Tab panes -->
 
 <div class="tab-content">
-
-  <div class="tab-pane active" id="results">
+<%fromResultsMenu = true %>
+  <div class="tab-pane" id="results">
         <div id = "replaceable">
         <h1> Sports </h1>
       <div class = "kaaywintable1">
@@ -26,7 +27,7 @@
 		      <td>Actions</td>
 		  </tr>
     
-      <%=render Sport.all   %>
+      <%=render Sport.all, :fromResultsMenu => fromResultsMenu  %>
 
     </table>
     </div>
@@ -37,7 +38,7 @@
  
 <div class="tab-pane" id="finished">sssssss</div>
 <div class="tab-pane" id="pending">..ssdsss.</div>
-<div class="tab-pane" id="pending-entry"> <%store_location%><%=render 'events/finished_events'%></div>
+<div class="tab-pane active" id="pending-entry"> <%store_location%><%=render 'events/finished_events'%></div>
 
 
 	

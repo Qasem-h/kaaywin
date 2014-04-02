@@ -5,6 +5,8 @@ ruby '1.9.3'
 gem 'rails', '4.0.2'
 gem 'bootstrap-sass'
 
+
+
 # Use sqlite3 as the database for Active Record
 group :developmennt do 
 	gem 'mysql2', '~> 0.3.0'
@@ -21,6 +23,8 @@ gem 'simple_form', '~> 3.0.0.rc'
 gem 'sass-rails', '~> 4.0.1'
 
 gem 'bootstrap-datetimepicker-rails'
+
+gem 'jquery-timepicker-addon-rails'
 
 gem 'nested_form'
 
