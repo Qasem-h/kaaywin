@@ -2,7 +2,7 @@ class LeaguesController < ApplicationController
 
  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 
-  before_action :admin_user, only: :destroy
+  before_action :admin_user, only: [:destroy, :edit, :new]
 
   def new
   	@league = League.new # create a blank league object to give to the league form
@@ -80,7 +80,7 @@ class LeaguesController < ApplicationController
 
 
   def admin_user
-    redirect_to(root_url) unless current_user.role == 1
-  end
+    redirect_to(root_url) unless current_user.role_id < 3
+      end
 
 end

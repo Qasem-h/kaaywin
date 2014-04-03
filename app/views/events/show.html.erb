@@ -17,14 +17,13 @@
 		<td><%= @event.id %> </td>
 		<td><%= @event.name %></td>
 			<td><%= @event.date %></td>
-			<td> o </td>
+			<td><%=@event.result%> </td>
 			<td><%=@event.active %></td>
 			<td><%=League.find(@event.league_id).name%></td>
 			<td> View Edit Delete </td>
 			</tr>
 			
 			</table>
-<%= button_to('Add Bet', events_addbet_path(:id => @event.id), class: "btn btn-large")  %>
 
 <br>
 <% (@bets).each do |bet| %>
@@ -49,12 +48,15 @@
 			
 		<%end%>
 		</table>
-		<%= link_to "delete", bet, method: :delete, data: {confirm: "Are you sure?"} %>
+		
 		</aside>
 		</div>
 	<%end%>
+	<%if current_user.role_id <3 %>
+		<%= link_to "edit", edit_event_path(@event) %> 
+		<%end%>	
 </center>
-			
+		
 		</section>
 	</aside>
 </div>

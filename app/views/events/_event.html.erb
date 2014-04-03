@@ -1,7 +1,7 @@
 
 <tr>
 <td><%=event.id%></td>
-<td><%=event.name%></td>
+<td><%=link_to event.name, display_event_path(event)%></td>
 <td><%=event.date%></td>
 <td><%=event.result%></td>
 
@@ -9,7 +9,7 @@
 <td><%=League.find(event.league_id).name %></td>
 
 
-<% if current_user.role = 1%>
+<% if current_user.role_id < 3%>
 <td>
 
 <%if !fromResultsMenu %>

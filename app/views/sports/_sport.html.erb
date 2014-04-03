@@ -7,7 +7,7 @@
 <%end%>
 </td>
 <td><%=sport.created_at%></td>
-<% if current_user.role = 1 and !fromResultsMenu %>
+<% if current_user.role_id < 3 and !fromResultsMenu %>
 <td><%= link_to "delete", sport, method: :delete, data: {confirm: "Are you sure?"} %>
 <%= link_to "edit", edit_sport_path(sport)  %></td>
 <%end%>

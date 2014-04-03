@@ -1,7 +1,7 @@
 class SportsController < ApplicationController
  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 
-  before_action :admin_user, only: :destroy
+  before_action :admin_user, only: [:destroy, :new, :edit]
 
   def new
     @sport = Sport.new # create a blank sport object to give to the sport form
@@ -50,7 +50,7 @@ class SportsController < ApplicationController
     params.require(:sport).permit(:name)
   end
   def admin_user
-    redirect_to(root_url) unless current_user.role == 1
+    redirect_to(root_url) unless current_user.role <3
   end
 
 

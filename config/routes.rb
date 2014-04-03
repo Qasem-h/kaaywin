@@ -16,7 +16,7 @@ Kaaywin::Application.routes.draw do
   get "leagues/distroy"
   get "leagues/index"
   get "main/index"
-  get "events/test_boot_strap"
+  get "events/display/:id", to: 'events#show', as: 'display_event'
   get "events/results" , to:'events#results', as: 'results'
    get "leagues/events/:id" , to:'events#index', as: 'league_events'
   get "/leagues/:id", to: 'leagues#index', as: 'sport_leagues'

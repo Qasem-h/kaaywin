@@ -15,7 +15,7 @@
      
               <li><%= link_to "Home",    '#' %></li>
              <% if signed_in? %>
-              
+              <% if current_user.role_id <3 %>
                <li id="fat-menu" class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     Users Management <b class = "caret"></b>
@@ -28,6 +28,9 @@
                     
                   </ul>
                 </li>
+                <%end%>
+
+                <% if current_user.role_id ==1 %>
                <li id="fat-menu" class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     Scratch card management <b class = "caret"></b>
@@ -40,6 +43,7 @@
                     
                   </ul>
                 </li>
+                <%end%>
               <li id="fat-menu" class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     Events management <b class = "caret"></b>
@@ -48,7 +52,7 @@
                     <li><%= link_to "Sports management", sports_path %> </li>
                     <li><%= link_to "League management", leagues_path %> </li>
                     <li><%= link_to "Event management", events_path %> </li>
-                     <li><%= link_to "Results", "/events/results" %> </li>
+                     <%if current_user.role_id<3%><li><%= link_to "Results", "/events/results" %> </li><%end%>
                     <li class="divider"></li>
                     
                   </ul>
@@ -63,6 +67,7 @@
                     <ul class="dropdown-menu">
                    
                     <li><%= link_to "Generate my report", "#" %> </li>
+                    <%if current_user.role_id <2 %>
                     <li><%= link_to "Generate admins profit report", "#" %> </li>
                     <li><%= link_to "Generate operators profit report", "#" %> </li>
                     <li><%= link_to "Generate users profit report", "#" %> </li>
@@ -70,6 +75,7 @@
                     <li><%= link_to "Generate betting report", "#" %> </li>
                     <li><%= link_to "Generate deposits report", "#" %> </li>
                     <li><%= link_to "Generate withdraws report", "#" %> </li>
+                    <%end%>
                     <li class="divider"></li>
                     
                   </ul>
@@ -80,7 +86,7 @@
                     Profile <b class = "caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                    <li><%= link_to "Change", current_user %> </li>
+                    <li><%= link_to "Change", edit_user_path(current_user) %> </li>
                     <li class="divider"></li>
                     <li>
                       <%= link_to "Sign out", signout_path, method: "delete" %>
@@ -115,7 +121,7 @@
           <ul>
          
             <li>Logged in as: <variable><%=current_user.name%></variable></li>
-            <li>User type is : <variable><%=current_user.role%></variable></li>
+            <li>User type is : <variable><%=current_user.role.name%></variable></li>
             <li>Date is : <variable><%=Time.now%></variable></li>
             <li>
             <%=form_tag(controller: "events", action: "search", method: "get" ) do %>

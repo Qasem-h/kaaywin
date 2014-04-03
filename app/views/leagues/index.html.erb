@@ -4,7 +4,8 @@
 <div class = "span10">
 <% provide(:title, "All Leagues") %>
 <center><h1>All Leagues</h1>
-<%= button_to "Register a new League", new_league_path, method: :get %>
+<%if current_user.role_id < 3 %><%= button_to "Register a new League", new_league_path, method: :get %>
+<%end%>
 </center> 
 
 

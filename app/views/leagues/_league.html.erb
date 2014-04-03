@@ -8,12 +8,15 @@
 </td>
 <td><%=league.active%></td>
 <td><%=league.sport.name %></td>
+<% if current_user.role_id < 3%>
 <td>
 
 <%if !fromResultsMenu %>
 <%= link_to "edit", edit_league_path(league)  %>
 <%= link_to "add event", new_event_path(:id => league.id) %>
 <%= link_to "delete", league, method: :delete, data: {confirm: "Are you sure?"} %>
+<%end%>
+
 <%end%>
 </td>
 

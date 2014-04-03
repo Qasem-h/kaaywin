@@ -3,16 +3,25 @@ class User < ActiveRecord::Base
 	before_create :create_remember_token
 	validates :name, presence: true, length: {maximum: 50}
 	validates :email, presence: true, uniqueness: {case_sensitive: false}
+
 	has_secure_password
 	validates :password, length: {minimum: 6}
 
-	def User.new_remember_token  # generates a random string
+	belongs_to :role
+
+
+
+		def User.new_remember_token  # generates a random string
 		SecureRandom.urlsafe_base64
 	end
 
 	def User.encrypt(token)
 		Digest::SHA1.hexdigest(token.to_s) # used to encrypt a random string
 	end
+
+	
+
+
 
 	private
 	def create_remember_token # encrypt a randon string generated for this user to create a remember token

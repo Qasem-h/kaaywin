@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy, :enter_result, :new, :enter_result, :enter_empty_results,:enter_results, :result, :search, :search_by_id, :save_result, :show]
+  before_action :signed_in_user, only: [:index, :resuts,:edit, :update, :destroy, :enter_result, :new, :enter_result, :enter_empty_results,:enter_results, :result, :search, :search_by_id, :save_result, :show]
+  before_action :permited_user, only: [:new,:results, :enter_results,:update, :edit, :destroy, :enter_empty_results, :save_results, :create]
   def new
     @event = Event.new
      1.times do 
@@ -149,6 +150,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.js
+      format.html
     end
   end
  
@@ -207,6 +209,10 @@ class EventsController < ApplicationController
     Event.find(params[:id]).destroy
     flash[:success] = "Event successfully deleted"
     redirect_to :back
+  end
+
+  def permited_user
+    redirect_to (root_url) unless current_user.role_id <3
   end
 
   private
