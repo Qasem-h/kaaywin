@@ -22,8 +22,8 @@ gem 'simple_form', '~> 3.0.0.rc'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.1'
 
-gem 'bootstrap-datetimepicker-rails'
-
+#gem 'bootstrap-datetimepicker-rails'
+gem 'jquery-datetimepicker-rails'
 gem 'jquery-timepicker-addon-rails'
 
 gem 'nested_form'
@@ -42,6 +42,7 @@ gem 'coffee-rails', '~> 4.0.1'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '3.0.4'
+gem 'jquery-ui-rails'
 
 gem 'awesome_nested_fields'
 

@@ -9,15 +9,20 @@
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+//= require_self
+
 //= require jquery
+//= require jquery.ui.all
+
 //= require bootstrap
 //= require jquery_ujs
-//= require_tree .
-//= require bootstrap-datetimepicker
+
+
+// require bootstrap-datetimepicker
 //= require jquery.nested-fields
 //= require jquery_nested_form
 //= require jquery-ui-timepicker-addon
+//= require_tree .
 
 
 
