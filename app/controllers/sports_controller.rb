@@ -50,7 +50,7 @@ class SportsController < ApplicationController
     params.require(:sport).permit(:name)
   end
   def admin_user
-    redirect_to(root_url) unless current_user.role <3
+    redirect_to(root_url) unless current_user.role_id <3
   end
 
 
