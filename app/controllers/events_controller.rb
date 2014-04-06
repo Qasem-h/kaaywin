@@ -157,7 +157,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(user_params) # save the event
 
-    @event.date = params[:date]
+       @event.date = params[:date]
     if !(params[:lid].nil?)
       @event.league_id = params[:lid]
     end
