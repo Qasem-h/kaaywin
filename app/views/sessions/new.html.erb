@@ -1,7 +1,10 @@
 <% provide(:title, "Sign in") %>
+
+<div class = "loginForm">
 <h1>Sign in</h1>
 <div class="row">
-	<div class="span6 offset3">
+	
+		<div class = "inset">
 		<%= form_for(:session, url: sessions_path) do |f| %>
 			<%=f.label :email %>
 			<%=f.text_field :email %>
@@ -11,6 +14,7 @@
 
 			<%=f.submit "Sign in", class: "btn btn-large btn-primary" %>
 		<% end %>
-	</div>
+	
 </div>
-
+</div>
+</div>

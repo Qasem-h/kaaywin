@@ -1,7 +1,8 @@
 <% provide(:title, 'Register') %>
+<div class = "itemForm">
 <h1>Please enter league details: </h1>
 <div class = "row">
-	<div class = "span6 offset3">
+	<div class = "span3 offset1">
 		<%=form_for(@league) do |f| %>
 			<%=render 'shared/error_messages_leagues' %>
 			<%= f.label :name %>
@@ -24,3 +25,4 @@
 			<%end%>
 		</div>
 	</div>	
+	</div>

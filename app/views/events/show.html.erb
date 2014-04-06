@@ -1,18 +1,18 @@
 <% provide(:title, @event.name) %>
 <br>
 <div id = "repleaceable">
-<div class="table">
-	<aside class="span10" >
-		<section>
+
 		<center>
-		<table>
+		<table border=1>
+		<tr>
 		<th>id</th>
 		<th>Name</th>
 		<th>date</th>
 		<th>result</th>
 		<th>Active</th>
 		<th>League</th>
-		<th>Actions</th>
+		
+		<tr/>
 		<tr>
 		<td><%= @event.id %> </td>
 		<td><%= @event.name %></td>
@@ -20,7 +20,7 @@
 			<td><%=@event.result%> </td>
 			<td><%=@event.active %></td>
 			<td><%=League.find(@event.league_id).name%></td>
-			<td> View Edit Delete </td>
+		
 			</tr>
 			
 			</table>
@@ -29,8 +29,7 @@
 <% (@bets).each do |bet| %>
 	Name: <%=bet.name%>
 	<br>
-	<div class="table">
-	<aside class="span10" >
+
 	<table style = "width:500px" border=1>
 	<tr><th>Name</th>
 	<th>Odd</th>
@@ -49,17 +48,14 @@
 		<%end%>
 		</table>
 		
-		</aside>
-		</div>
+		
 	<%end%>
 	<%if current_user.role_id <3 %>
 		<%= link_to "edit", edit_event_path(@event) %> 
 		<%end%>	
 </center>
 		
-		</section>
-	</aside>
-</div>
+		
 </div>
 
 

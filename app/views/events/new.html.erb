@@ -1,9 +1,11 @@
 <% provide(:title, 'New Event') %>
+
+<div class = "itemForm">
 <h1>Please enter event details: </h1>
 
 
 <div class = "row">
-	<div class = "span6 offset3">
+	<div class = "span3 offset1">
 		<%= nested_form_for(@event) do |f| %>
 			<%=render 'shared/error_messages_events' %>
 			<p>
@@ -12,7 +14,7 @@
 
 		
 			<% if @league_id.nil? %>
-			League
+			<label>League</label>
 			
 			<%=collection_select(:event, :league_id, League.all, :id, :name) %>
 			<%else%>
@@ -51,4 +53,6 @@
 			<%=f.submit "Register this event", class: "btn btn-large btn-primary" %>
 			<%end%>
 		</div>
-	</div>	
+	</div>
+
+	</div>

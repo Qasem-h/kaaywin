@@ -63,7 +63,7 @@ class UsersController < ApplicationController
  def permited_user_delete
   #only permit deleting of users if the logged in user is an admin or supervisor and logged in user has higher privilege than the deleted user and 
   # the logged in user is not the deleted user
-    redirect_to(root_url) unless current_user.role_id <3 && (current_user.role_id <= User.find(params[:id]) && current_user !=User.find(params[:id]))
+    redirect_to(root_url) unless current_user.role_id <3 && (current_user.role_id <= User.find(params[:id]).role_id && current_user !=User.find(params[:id]))
   end
 
   def permited_user_list
