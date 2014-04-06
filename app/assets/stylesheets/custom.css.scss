@@ -5,11 +5,12 @@
 	foreground-color: #FFFFFF;
 	text-color: #202020;
 	ul li {color:white;}
-	variable {color:yellow;}
+	variable {color:red;}
 
 	
 }
 
+/* General table used to render all lists */
 .kaaywintable1 {
 
                 margin:0px;padding:0px;
@@ -209,7 +210,7 @@ body {
   background:#333 url(/images/classy_fabric.png);
 }
 
-
+/* form used for all resource editing and creating */
 .itemForm {
     background:#111; 
   width:600px;
@@ -244,6 +245,8 @@ body {
   box-shadow: 0 0 6px 4px #fff;
 }
 
+
+/* form used for login page */
 .loginForm {
     background:#111; 
   width:300px;
