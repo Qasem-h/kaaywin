@@ -3,7 +3,9 @@
 <div class = "itemForm">
 <h1>Please enter event details: </h1>
 
-
+<br>
+<br>
+<br>
 <div class = "row">
 	<div class = "span3 offset1">
 		<%= nested_form_for(@event) do |f| %>
@@ -47,10 +49,14 @@
 			<%=check_box("event", "active", {}, "yes", "no") %>
 			<br><br>
 
-			</p>
+			
 			 <%= f.fields_for :bets %>
 			 <p><%= f.link_to_add "Add bet", :bets %></p>
+			 <br>
+			 
+			 
 			<%=f.submit "Register this event", class: "btn btn-large btn-primary" %>
+			
 			<%end%>
 		</div>
 	</div>
