@@ -1,0 +1,46 @@
+<h1>Betting#index</h1>
+
+<table border = 1>
+<tr>
+<td>
+	<%=form_tag(controller: "events", action: "search", method: "get" ) do %>
+                  <%= label_tag(:q, "Event name:") %>
+                  <%= text_field_tag(:q)%>
+                  <%=submit_tag("search",class: "btn btn-small btn-primary")%>
+                  <%end%>
+ </td>
+<td>
+	<%@leagues.each do |league|%>
+	<h1><%=league.name%></h1>
+	<%league.events.each do |event|%>
+		<table border = 1>
+		<tr>
+		<td>
+		<%=event.name%>
+		<%event.bets.each do |bet| %>
+			<table border = 1>
+			<tr>
+			<td><%=bet.name%></td>
+			<%bet.bet_items.each do |bet_item| %>
+				<td><%=button_to bet_item.odds.to_s ,placebet_path(bet_item.id), method: :get, :remote => true%></td>
+			<%end%>
+			</tr>
+			</table>
+		<%end%>
+		</td>
+		</tr>
+		</table>
+	<%end%>
+<%end%>
+</td>
+
+<td><h1>Betting slip</h1>
+<div id = "replaceable">length</div>
+</td>
+
+
+</tr>
+</table>
+
+
+

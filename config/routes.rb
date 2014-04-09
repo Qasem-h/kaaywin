@@ -1,5 +1,6 @@
 Kaaywin::Application.routes.draw do
   
+  get "betting/index"
   get "bets/destroy"
   get "sports/new"
   get "sports/edit"
@@ -25,6 +26,8 @@ Kaaywin::Application.routes.draw do
  post "events/search"
  post "events/search_by_id"
   post "events/addbet"
+
+   get "/betting/:id", to: 'betting#placebet', as: 'placebet'
 
   get "events/:id", to: 'events#enter_result', as: 'result'
   post "events/placebet"
