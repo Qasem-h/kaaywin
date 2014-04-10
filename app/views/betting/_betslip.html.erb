@@ -1,4 +1,10 @@
 
 <div id = 'replaceable'>
-<td><%=session[:betSlip].betNames.length%></td>
+<td><%=session[:betSlip].picks.length%>
+<%session[:betSlip].betNames.each do |betName| %>
+<li><%=betName%></li>
+<br>
+<%end%>
+
+</td>
 </div>

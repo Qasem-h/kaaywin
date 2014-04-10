@@ -1,5 +1,6 @@
 Kaaywin::Application.routes.draw do
   
+  get "grid_test/test"
   get "betting/index"
   get "bets/destroy"
   get "sports/new"
@@ -40,6 +41,7 @@ Kaaywin::Application.routes.draw do
   resources :users
   resource :results
   resources :leagues
+  resources :bet_types
 
   resources :events do
     member do

@@ -1,0 +1,33 @@
+<div id = "replaceable">
+<div class= "container">
+<div class = "row">
+<div class = "span10">
+<% provide(:title, "All Bet Types") %>
+<center> <h1>All Bet Types</h1>
+<%if current_user.role_id <3 %><%= button_to "Register a new Bet Type", new_bet_type_path, method: :get %> <%end%>
+</center> 
+
+<div class="kaaywintable1">
+<%fromResultsMenu=false%>
+		<table>
+	
+		<tr>
+		<td>Name</td>
+		<td>Actions</td>
+		
+		</tr>
+
+	<%= render @bet_types%>
+	</table>
+	
+
+	
+	<br>
+	
+	</div>
+	</div>
+	</div>
+	</div>
+</div>	
+
+

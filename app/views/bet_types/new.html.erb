@@ -1,0 +1,14 @@
+<% provide(:title, 'New Bet Type') %>
+<h1>Please enter Bet Type details: </h1>
+<div class = "row">
+	<div class = "span6 offset3">
+		<%=form_for(@bet_type) do |f| %>
+			<%=render 'shared/error_messages_bet_types' %>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+			
+			
+			<%=f.submit "Register this Bet Type", class: "btn btn-large btn-primary" %>
+			<%end%>
+		</div>
+	</div>	

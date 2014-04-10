@@ -1,0 +1,15 @@
+
+<tr>
+<td>
+
+<%=bet_type.name%>
+
+</td>
+
+<% if current_user.role_id %>
+<td><%= link_to "delete", bet_type, method: :delete, data: {confirm: "Are you sure?"} %>
+<%= link_to "edit", edit_bet_type_path(bet_type)  %></td>
+<%end%>
+
+</tr>
+

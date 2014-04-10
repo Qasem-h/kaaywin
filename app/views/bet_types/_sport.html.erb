@@ -1,0 +1,16 @@
+
+<tr>
+<td>
+<%if fromResultsMenu%><%=link_to bet_type.name, sport_leagues_path(sport.id), :remote =>true%><%else%>
+
+<%=bet_type.name%>
+<%end%>
+</td>
+<td><%=bet_type.created_at%></td>
+<% if current_user.role_id < 3 and !fromResultsMenu %>
+<td><%= link_to "delete", bet_type, method: :delete, data: {confirm: "Are you sure?"} %>
+<%= link_to "edit", edit_bet_type_path(bet_type)  %></td>
+<%end%>
+
+</tr>
+

@@ -6,7 +6,10 @@
 	<%= f.text_field :name %>
 
 	<%= f.label :bet_type %>
-	<%= f.text_field :bet_type %><br />
+
+		<%=f.collection_select :bet_type_id, BetType.all, :id, :name  %>
+	
+	<br />
 	   
 	</div>
 		

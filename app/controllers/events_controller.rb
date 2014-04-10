@@ -217,7 +217,7 @@ class EventsController < ApplicationController
 
   private
   def user_params # to prevent mass assginement security vulnerabily
-    params.require(:event).permit(:name, :date, :league_id, :active, bets_attributes:[:id,:name, :bet_type, :_destroy, bet_items_attributes:[:id,:name,:odds,:_destroy]])
+    params.require(:event).permit(:name, :date, :league_id, :active, bets_attributes:[:id,:name, :bet_type_id, :_destroy, bet_items_attributes:[:id,:name,:odds,:_destroy]])
   end
 
   def result_params # prevent mass assignments and only update specific attributes of the event related to saving results
