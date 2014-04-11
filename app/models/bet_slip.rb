@@ -11,35 +11,43 @@ class BetSlip
 	@stake = 20 # this is the minumum stake
 	@possibleWinning = 0
 	@totalOdds = 0
-	@picks = Hash.new
-	@betNames = Array.new # you wanna keep this to avoid the same bet being placed twice
-	@eventName
-	attr_reader :picks
-	attr_reader :betItems
+	@picks_id = Array.new # hold the picks selected by the user
+	@picks_name = Array.new 
+	@picks_odds = Array.new 
+	@betNames = Array.new # you wanna keep this to print next to the event
+	@eventName = Array.new # you will use the ev
+	attr_reader :picks_id
+	attr_reader :picks_name
+	attr_reader :picks_odds
+	
 	attr_reader :betNames  # used to print bet names 
 	attr_reader :eventNames
 
 	@betItems
 
 	def initialize()
-		@picks = Hash.new 
-		@betItems = Array.new
+		@picks_id = Array.new 
+	    @picks_odds = Array.new 
 		@betNames = Array.new
 		@eventNames = Array.new
+		@picks_name = Array.new 
+		@stake = 20 
 	end
-	# method that is used to hold clicked picks 
-	def addPick(betItem,betName,eventName,title, odds)
-		success = true
-		if @picks.length == 0
-			@picks = {title => odds}
-			addBetItem(betItem)
+
+def addPick(betItemID, betItemName,betItemOdds,betName,eventName)
+		if @picks_id.length == 0    # if this is the first bet being placed just push it in
+			@picks_id.push(betItemID)
+			@picks_name.push(betItemName)
+			@picks_odds.push(betItemOdds)	
 				addBetName(betName)
 				addEventName(eventName)
 		else
 			if (@eventNames.index(eventName).nil?)  # if this event name has never been added
 				
-				@picks[title] = odds
-				addBetItem(betItem)
+				@picks_id.push(betItemID)
+			    @picks_name.push(betItemName)
+			    @picks_odds.push(betItemOdds)	
+			
 				addBetName(betName)
 				addEventName(eventName)
 
@@ -54,11 +62,12 @@ class BetSlip
 
 	end
 
-	# method that is used to store the bet_item corresponding to the clicked odds
-
-	def addBetItem(id)
-		@betItems.push(id) #unless !(@betItems.index(id).nil?)
+	def totalOdds
+		result =1
+		@picks_odds.each {|odd| result = result*odd.to_f}
+		return result
 	end
+
 
 	def addBetName(name)
 		@betNames.push(name) #unless !(@betNames.index(name).nil?)
@@ -68,6 +77,9 @@ class BetSlip
     	@eventNames.push(name) #unless !(@eventNames.index(name).nil?)
     end
 
+    def winnings
+    	@stake*totalOdds
+    end
 
 
 end

@@ -53,13 +53,13 @@
                     <li><%= link_to "League management", leagues_path %> </li>
                     <li><%= link_to "Event management", events_path %> </li>
                     <li><%= link_to "Bet type management", bet_types_path %> </li>
-                    </li><%end%>
+                    </li>
                     <li class="divider"></li>
                     
                   </ul>
                 </li>
                
-               <li> <%if current_user.role_id<3%><li><%= link_to "Results", "/events/results" %> </li>
+               <li> <%if current_user.role_id<3%><li><%= link_to "Results", "/events/results" %> </li>  <%end%>
              
                <li id="fat-menu" class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">

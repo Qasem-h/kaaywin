@@ -1,10 +1,31 @@
 
 <div id = 'replaceable'>
-<td><%=session[:betSlip].picks.length%>
-<%session[:betSlip].betNames.each do |betName| %>
-<li><%=betName%></li>
-<br>
-<%end%>
 
-</td>
+<% (0..(session[:betSlip].picks_id.length)).each do |cursor| %>
+
+<h2><%=session[:betSlip].eventNames[cursor]%><%=session[:betSlip].betNames[cursor]%></h2>
+
+
+<div class = "left"><%=session[:betSlip].picks_name[cursor]%></div>
+<div class = "right"><%=session[:betSlip].picks_odds[cursor]%></div>
+
+<br>
+
+
+<%end%>
+<center>
+<div class="left">Total bets:</div>
+<div class="right"><%=session[:betSlip].picks_id.length %></div>
+<br>
+<div class="left">Total odds:</div>
+<div class="right"><%=session[:betSlip].totalOdds %></div>
+<br>
+<div class="left">Stake:</div>
+<div class = "right"><%=text_field(:stake, :value => '20')%></div>
+<br>
+<div class="left">Possible winnings:</div>
+<div class = "right"><%=session[:betSlip].winnings%></div>
+</center>
+
+
 </div>

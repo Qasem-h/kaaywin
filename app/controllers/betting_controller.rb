@@ -7,6 +7,7 @@ class BettingController < ApplicationController
   def index
   	@leagues= League.all
   	session[:betSlip] = nil
+  	@emptySlip = true
   	@front_office = true
   end
 
@@ -14,7 +15,7 @@ class BettingController < ApplicationController
   def placebet
   	@front_office = true
   	session[:betSlip] = BetSlip.new unless !session[:betSlip].nil?
-
+  	@emptySlip = false
 
 
   	betItem = BetItem.find(params[:id])
@@ -22,10 +23,12 @@ class BettingController < ApplicationController
   	#event
   	event = betItem.bet.event
 
-  	#add the bet
-  	session[:betSlip].addPick(betItem.id,betItem.bet.name,event.name,betItem.name, betItem.odds)
+  	#add the bet to the slip together will all dta needed for rendering
+  	# i.e the event name, pick, odds, etc
+  	# we will also need to store the bet item to clone it later on 
+  	session[:betSlip].addPick(betItem.id, betItem.name,betItem.odds,betItem.bet.bet_type.name, event.name)
   
-  	puts(session[:betSlip].betItems)
+  	#puts(session[:betSlip].picks)
   	puts(session[:betSlip].eventNames)
   	#puts(event.name)
  	
