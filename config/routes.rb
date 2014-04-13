@@ -29,6 +29,7 @@ Kaaywin::Application.routes.draw do
   post "events/addbet"
 
    get "/betting/:id", to: 'betting#placebet', as: 'placebet'
+   post '/betting/reset_bet_slip', to: 'betting#reset_bet_slip', as:'reset_bet_slip'
 
   get "events/:id", to: 'events#enter_result', as: 'result'
   post "events/placebet"

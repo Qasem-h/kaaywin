@@ -1,47 +1,127 @@
-<h1>Betting#index</h1>
 
-<table border = 1>
-<tr>
-<td>
-	<%=form_tag(controller: "events", action: "search", method: "get" ) do %>
-                  <%= label_tag(:q, "Event name:") %>
-                  <%= text_field_tag(:q)%>
+
+<br>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="#">Project name</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+      </div><!--/.nav-collapse -->
+
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <div class="sidebar-nav-fixed">
+        <div class="well">         
+            <ul class="nav nav-list">
+              <li>
+           
+
+             
+            <%=form_tag(controller: "events", action: "search", method: "get" ) do %>
+          
+
+                 <%= label_tag(:q, "") %>
+                  <%= text_field_tag(:q,'', :placeholder => 'Event id')%>
+                    <%= text_field_tag(:q,'', :placeholder => 'Event name')%>
                   <%=submit_tag("search",class: "btn btn-small btn-primary")%>
                   <%end%>
- </td>
-<td>
-	<%@leagues.each do |league|%>
-	<h1><%=league.name%></h1>
-	<%league.events.each do |event|%>
-		<table border = 1>
-		<tr>
-		<td>
-		<%=event.name%>
-		<%event.bets.each do |bet| %>
-			<table border = 1>
-			<tr>
-			<td><%=bet.name%></td>
-			<%bet.bet_items.each do |bet_item| %>
-				<td><%=button_to bet_item.odds.to_s ,placebet_path(bet_item.id), method: :get, :remote => true%></td>
-			<%end%>
-			</tr>
-			</table>
-		<%end%>
-		</td>
-		</tr>
-		</table>
-	<%end%>
-<%end%>
-</td>
+                 
+            </li>
 
-<td><table style="padding:50px"><thead><h1>Betting slip</h1></thead>
-<tbody><div id = "replaceable">length</div></tbody></table>
+           
+        </ul>
+      </div><!--/.well -->
+      </div> <!--/sidebar-nav-fixed -->
+    </div><!--/span-->
 
-</td>
+    <div class="span7 span-fixed-sidebar" id="fixtures">
+            <div class="hero-unit">
+             <%@leagues.each do |league|%>
+      <h2><%=league.name%></h2>
+       <%league.events.each do |event|%>
+          
+         <div class = "left"><f2><%=event.name%></f2></div>
+         <br>
+         <br>
+         <%event.bets.each do |bet| %>
+         
+            <div class = "left"><f1><%=event.name+" " +bet.bet_type.name%></f1></div>
 
+            <%if bet.bet_type.name.include? "Versus"%>
+           <%bet.bet_items.each do |bet_item| %>
+             <div class = "right"><%=link_to bet_item.odds.to_s ,placebet_path(bet_item.id), :class =>"btn btn-danager btn-mini", method: :get, :remote => true%></div>
+           <%end%>
+            <br>
+           <%else%>
+          <br>
+          
+           <%bet.bet_items.each do |bet_item| %>
+           <br>
+           
+             <div class = "left"><f1><%=bet_item.name%></f1></div>
 
-</tr>
-</table>
+             <div class = "right"><table border = "0"><tr><td><%=link_to bet_item.odds.to_s,placebet_path(bet_item.id), :class =>"btn btn-danager btn-mini",method: :get, :remote => true%></td></tr></table></div>
+             <br>
+           <%end%>
+          
 
+          <br>
+          <%end%>
+         <%end%>
+         
+         <%end%>
+       <%end%>
+        <p><a class="btn btn-primary btn-large">Learn more »</a></p>
+      </div>
+      </div>
+   
 
+  
+      
+      <div class="span3 offset0">
+      
+      <div class="sidebar-nav-fixed">
+        <div class="well" id = "well">         
+           
+
+          <li class="nav-header"><center><b>Betting Slip</b></center></li>
+          <div id = 'replaceable'>Your betting slip is empty</div>
+
+          
+       
+
+      </div><!--/.well -->
+     
+      <img src= "/assets/betslip.png">
+     
+    
+      </div> <!--/sidebar-nav-fixed -->
+    </div><!--/span-->
+    
+     
+      
+  </div><!--/row-->
+
+ 
+
+</div><!--/.fluid-container-->
 

@@ -1,6 +1,124 @@
-<div class="container">
-<div class="row">
-<div class="span6"> first</div>
-<div class = "span6"> second </div>
+<%= image_path "bground.jpg"%>
+
+<br>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="#">Project name</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+      </div><!--/.nav-collapse -->
+
+    </div>
+  </div>
 </div>
-</div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2 offset1">
+      <div class="sidebar-nav-fixed">
+        <div class="well">         
+            <ul class="nav nav-list">
+              <li>
+           
+
+             
+            <%=form_tag(controller: "events", action: "search", method: "get" ) do %>
+          
+
+                 <%= label_tag(:q, "") %>
+                  <%= text_field_tag(:q,'Event id')%>
+                    <%= text_field_tag(:q,'Event name')%>
+                  <%=submit_tag("search",class: "btn btn-small btn-primary")%>
+                  <%end%>
+                 
+            </li>
+
+           
+        </ul>
+      </div><!--/.well -->
+      </div> <!--/sidebar-nav-fixed -->
+    </div><!--/span-->
+
+    <div class="span5 span-fixed-sidebar">
+            <div class="hero-unit">
+             <%@leagues.each do |league|%>
+      <h2><%=league.name%></h2>
+       <%league.events.each do |event|%>
+          
+         <div class = "left"><f2><%=event.name%></f2></div>
+         <br>
+         <br>
+         <%event.bets.each do |bet| %>
+         
+            <div class = "left"><f1><%=event.name+" " +bet.bet_type.name%></f1></div>
+
+            <%if bet.bet_type.name.include? "Versus"%>
+           <%bet.bet_items.each do |bet_item| %>
+             <div class = "right"><%=button_to bet_item.odds.to_s ,placebet_path(bet_item.id), method: :get, :remote => true%></div>
+           <%end%>
+            <br>
+           <%else%>
+          <br>
+          
+           <%bet.bet_items.each do |bet_item| %>
+           <br>
+           
+             <div class = "left"><f1><%=bet_item.name%></f1></div>
+
+             <div class = "right"><table border = "0"><tr><td><%=button_to bet_item.odds.to_s ,placebet_path(bet_item.id), method: :get, :remote => true, class:  "btn btn-small btn-primary"%></td></tr></table></div>
+             <br>
+           <%end%>
+          
+
+          <br>
+          <%end%>
+         <%end%>
+         
+         <%end%>
+       <%end%>
+        <p><a class="btn btn-primary btn-large">Learn more »</a></p>
+      </div>
+      </div>
+      <div class="row-fluid">
+
+  
+      
+      <div class="span3 offset0">
+      
+      <div class="sidebar-nav-fixed">
+        <div class="well">         
+            <ul class="nav nav-list">
+
+          <li class="nav-header">Betting Slip</li>
+          <div id = 'replaceable'>Your betting slip is empty</div>
+        </ul>
+      </div><!--/.well -->
+      </div> <!--/sidebar-nav-fixed -->
+    </div><!--/span-->
+    
+      
+      
+  </div><!--/row-->
+
+  <hr>
+
+  <footer>
+    <p>© Company 2012</p>
+  </footer>
+
+</div><!--/.fluid-container-->
+

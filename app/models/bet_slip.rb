@@ -23,6 +23,8 @@ class BetSlip
 	attr_reader :betNames  # used to print bet names 
 	attr_reader :eventNames
 
+	attr_writer :stake
+
 	@betItems
 
 	def initialize()
@@ -65,6 +67,8 @@ def addPick(betItemID, betItemName,betItemOdds,betName,eventName)
 	def totalOdds
 		result =1
 		@picks_odds.each {|odd| result = result*odd.to_f}
+		result = sprintf "%.2f", result.to_f
+		result = result.to_f
 		return result
 	end
 
@@ -79,6 +83,10 @@ def addPick(betItemID, betItemName,betItemOdds,betName,eventName)
 
     def winnings
     	@stake*totalOdds
+    end
+
+    def reset
+    	initialize()
     end
 
 

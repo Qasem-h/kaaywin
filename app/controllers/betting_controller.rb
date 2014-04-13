@@ -38,5 +38,14 @@ class BettingController < ApplicationController
   		end
   	end
 
+  	def reset_bet_slip # used to clear all bets
+  		session[:betSlip].reset
+  		respond_to do |format|
+  		format.html
+  		format.js
+  		end
+  	end
+
+
   end
 

@@ -1,5 +1,8 @@
 
 <div id = 'replaceable'>
+<body style="background-attachment: fixed; background-repeat: no-repeat;" background="/assets/bground.jpg">
+
+
 
 <% (0..(session[:betSlip].picks_id.length)).each do |cursor| %>
 
@@ -21,11 +24,15 @@
 <div class="right"><%=session[:betSlip].totalOdds %></div>
 <br>
 <div class="left">Stake:</div>
-<div class = "right"><%=text_field(:stake, :value => '20')%></div>
+<div class = "right"><%=text_field :stake,:amount, :value  => '20', :size =>4, :maxlength =>"4"%></div>
+<br>
 <br>
 <div class="left">Possible winnings:</div>
 <div class = "right"><%=session[:betSlip].winnings%></div>
+<br>
+<br>
+<center><%=link_to "Remove all", reset_bet_slip_path, method: :post,:remote => true%></center>
 </center>
-
+  
 
 </div>
