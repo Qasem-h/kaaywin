@@ -23,6 +23,11 @@ background: #C4C4C4 url('/assets/betslip1.png')  repeat;
 {
    opacity: .9;
 }
+
+#fheader
+{
+   background-color: green;
+}
 #well  { 
 
   margin-bottom: 0;
@@ -46,6 +51,19 @@ f1
   font-size:12px; 
 }
 
+fleague
+{
+  font-size:20px; 
+  background-color: green;
+
+}
+
+fleague2
+{
+   font-size:12px; 
+   color: green;
+   font-weight:bold;
+}
 f2
 {
 font-size:14px;

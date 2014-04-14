@@ -1,6 +1,7 @@
 
 
 <br>
+
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container-fluid">
@@ -28,11 +29,10 @@
 
 <div class="container-fluid">
   <div class="row-fluid">
-    <div class="span2">
-      <div class="sidebar-nav-fixed">
+    <div class="span2 offset1">
+     
         <div class="well">         
-            <ul class="nav nav-list">
-              <li>
+            
            
 
              
@@ -44,40 +44,45 @@
                     <%= text_field_tag(:q,'', :placeholder => 'Event name')%>
                   <%=submit_tag("search",class: "btn btn-small btn-primary")%>
                   <%end%>
-                 
-            </li>
-
-           
-        </ul>
+         
       </div><!--/.well -->
-      </div> <!--/sidebar-nav-fixed -->
+     
     </div><!--/span-->
 
-    <div class="span7 span-fixed-sidebar" id="fixtures">
+    <div class="span5 span-fixed-sidebar" id="fixtures">
             <div class="hero-unit">
              <%@leagues.each do |league|%>
-      <h2><%=league.name%></h2>
+      <table class = "table table-hover table-striped table-bordered" id = 'fheader'><thead><tr><th><%=league.name%></th></tr></thead></table>
+      <br>
        <%league.events.each do |event|%>
-          
-         <div class = "left"><f2><%=event.name%></f2></div>
+          <fleague><%=event.date.strftime("%A") + " " +event.date.to_date.to_s%></fleague>
+          <br>
+        
          <br>
          <br>
          <%event.bets.each do |bet| %>
-         
-            <div class = "left"><f1><%=event.name+" " +bet.bet_type.name%></f1></div>
+        
 
-            <%if bet.bet_type.name.include? "Versus"%>
+          
+
+            <%if bet.bet_type.name.downcase.include? "versus" and bet.bet_type.name.downcase.include? "draw"%>
+              <div class = "left"><fleague2><%=event.name%></fleague2></div>
+            <br>
+           <br>
+            <div class = "left"><fleague2><%=bet.bet_type.name%></fleague2></div>
            <%bet.bet_items.each do |bet_item| %>
              <div class = "right"><%=link_to bet_item.odds.to_s ,placebet_path(bet_item.id), :class =>"btn btn-danager btn-mini", method: :get, :remote => true%></div>
            <%end%>
             <br>
            <%else%>
           <br>
-          
+          <br>
+          <div class = "left"><fleague2><%=event.name+" "+bet.bet_type.name%></fleague2></div>
+          <br>
            <%bet.bet_items.each do |bet_item| %>
            <br>
            
-             <div class = "left"><f1><%=bet_item.name%></f1></div>
+         <div class = "left"><table border = "0"><tr><td><%=bet_item.name%></td></tr></table></div>
 
              <div class = "right"><table border = "0"><tr><td><%=link_to bet_item.odds.to_s,placebet_path(bet_item.id), :class =>"btn btn-danager btn-mini",method: :get, :remote => true%></td></tr></table></div>
              <br>
@@ -97,7 +102,7 @@
 
   
       
-      <div class="span3 offset0">
+      <div class="span2 offset0">
       
       <div class="sidebar-nav-fixed">
         <div class="well" id = "well">         
