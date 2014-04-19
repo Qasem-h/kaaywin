@@ -31,3 +31,4 @@ function remove_fields(link) {
 	$(link).current("input[type=hidden]").value = "1"
 	$(link).parent(".fields").hide();
 }
+

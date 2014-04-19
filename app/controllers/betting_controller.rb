@@ -11,12 +11,16 @@ class BettingController < ApplicationController
   	@front_office = true
   end
 
+  def test_image
+  end
+
+
 # actual bet placing that updates the betting slip session instance
   def placebet
   	@front_office = true
   	session[:betSlip] = BetSlip.new unless !session[:betSlip].nil?
   	@emptySlip = false
-
+  
 
   	betItem = BetItem.find(params[:id])
   	# get the event as we will need its name to avoid mulitple bets placed on the same
@@ -35,6 +39,26 @@ class BettingController < ApplicationController
   	respond_to do |format|
   		format.html
   		format.js
+  		end
+  	end
+
+  	def remove_bet
+
+  		# get the bet array index so we can remove it	
+  		session[:betSlip].removeBet(params[:id].to_i)
+  		respond_to do |format|
+  			format.html
+  			format.js
+  		end
+  	end
+
+  	# the user updated the stae amount
+  	def update_stake
+  		session[:betSlip].stake = params[:amount].to_f
+
+  		respond_to do |format|
+  			format.html
+  			format.js
   		end
   	end
 

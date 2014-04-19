@@ -28,8 +28,13 @@ Kaaywin::Application.routes.draw do
  post "events/search_by_id"
   post "events/addbet"
 
+
+ get "/betting/test_image", to: 'betting#test_image', as: 'test_image'
    get "/betting/:id", to: 'betting#placebet', as: 'placebet'
    post '/betting/reset_bet_slip', to: 'betting#reset_bet_slip', as:'reset_bet_slip'
+    post '/betting/update_stake', to: 'betting#update_stake', as:'update_stake'
+
+   post "/betting/remote_bet/:id", to: 'betting#remove_bet', as: 'remove_bet'
 
   get "events/:id", to: 'events#enter_result', as: 'result'
   post "events/placebet"

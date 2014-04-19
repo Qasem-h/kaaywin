@@ -2,15 +2,22 @@
 <div id = 'replaceable'>
 <body style="background-attachment: fixed; background-repeat: no-repeat;" background="/assets/bground.jpg">
 
+<% if session[:betSlip].picks_id.length == 0 %>
 
 
-<% (0..(session[:betSlip].picks_id.length)).each do |cursor| %>
+Your betting slip is empty.  Please click on bets to add.
+
+<%else%>
+
+
+
+<% (0..(session[:betSlip].picks_id.length-1)).each do |cursor| %>
 
 <h2><%=session[:betSlip].eventNames[cursor]%><%=session[:betSlip].betNames[cursor]%></h2>
 
 
 <div class = "left"><%=session[:betSlip].picks_name[cursor]%></div>
-<div class = "right"><%=session[:betSlip].picks_odds[cursor]%></div>
+<div class = "right"><%=session[:betSlip].picks_odds[cursor].to_s+"  "%><%=link_to content_tag(:span,'', class: "glyphicon glyphicon-remove")+ "", remove_bet_path(cursor), method: :post, :remote => true, class: "glyphicon gyphicon-star remove_fields"%></div>
 
 <br>
 
@@ -23,8 +30,21 @@
 <div class="left">Total odds:</div>
 <div class="right"><%=session[:betSlip].totalOdds %></div>
 <br>
+
+
+	
+
 <div class="left">Stake:</div>
-<div class = "right"><%=text_field :stake,:amount, :value  => '20', :size =>4, :maxlength =>"4"%></div>
+<div class = "right"><%=text_field :stake,:amount, :value  => session[:betSlip].stake.to_s, :size =>4, :maxlength =>"4", :onchange => "$.ajax({
+	type: 'POST',
+	url: 'update_stake',
+	data: {amount: $('#stake_amount').val()
+		},
+	dataType: 'script'
+	//do nothing
+	
+
+	});"%></div>
 <br>
 <br>
 <div class="left">Possible winnings:</div>
@@ -33,6 +53,9 @@
 <br>
 <center><%=link_to "Remove all", reset_bet_slip_path, method: :post,:remote => true%></center>
 </center>
-  
+<%end%> 
+
+
+
 
 </div>

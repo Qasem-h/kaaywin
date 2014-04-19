@@ -22,10 +22,12 @@ class BetSlip
 	
 	attr_reader :betNames  # used to print bet names 
 	attr_reader :eventNames
+	attr_reader :stake
 
 	attr_writer :stake
 
-	@betItems
+
+
 
 	def initialize()
 		@picks_id = Array.new 
@@ -33,7 +35,7 @@ class BetSlip
 		@betNames = Array.new
 		@eventNames = Array.new
 		@picks_name = Array.new 
-		@stake = 20 
+		@stake = 20
 	end
 
 def addPick(betItemID, betItemName,betItemOdds,betName,eventName)
@@ -82,8 +84,18 @@ def addPick(betItemID, betItemName,betItemOdds,betName,eventName)
     end
 
     def winnings
-    	@stake*totalOdds
+    	 (sprintf "%.2f",(@stake*totalOdds)).to_f
     end
+
+
+    def removeBet(index)
+    	@picks_id.delete_at(index)
+	    @picks_odds.delete_at(index)
+		@betNames.delete_at(index)
+		@eventNames.delete_at(index)
+		@picks_name.delete_at(index)
+    end
+
 
     def reset
     	initialize()
