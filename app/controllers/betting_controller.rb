@@ -15,7 +15,7 @@ class BettingController < ApplicationController
   end
 
 
-# actual bet placing that updates the betting slip session instance
+  # actual bet placing that updates the betting slip session instance
   def placebet
   	@front_office = true
   	session[:betSlip] = BetSlip.new unless !session[:betSlip].nil?
@@ -65,11 +65,18 @@ class BettingController < ApplicationController
   	def reset_bet_slip # used to clear all bets
   		session[:betSlip].reset
   		respond_to do |format|
-  		format.html
-  		format.js
+  			format.html
+  			format.js
   		end
   	end
 
-
+  	def issue_ticket # issue the ticket
+  		session[:betSlip].createTicket_for_user(current_user.id)
+  		session[:betSlip].reset
+  		respond_to do |format|
+  			format.html
+  			format.js
+  		end
+  	end
   end
 

@@ -59,6 +59,10 @@ Your betting slip is empty.  Please click on bets to add.
 </li>
 </ul>
 <br>
+<%if session[:betSlip].picks_id.length >=3 && signed_in? %>
+<center><%=link_to "place bet",issue_ticket_path, :class =>"btn btn-danager", method: :post, :remote => true%>
+</center>
+<%end%>
 <center><%=link_to "Remove all", reset_bet_slip_path, method: :post,:remote => true%></center>
 
 <%end%> 

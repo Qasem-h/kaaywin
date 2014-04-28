@@ -87,13 +87,39 @@ def addPick(betItemID, betItemName,betItemOdds,betName,eventName)
     	 (sprintf "%.2f",(@stake*totalOdds)).to_f
     end
 
-
+    # remove an individual bet from the bet slip
     def removeBet(index)
     	@picks_id.delete_at(index)
 	    @picks_odds.delete_at(index)
 		@betNames.delete_at(index)
 		@eventNames.delete_at(index)
 		@picks_name.delete_at(index)
+    end
+
+    # this method will be used to generate a ticket by:
+
+    # 1. creating and saving a new blank ticket( we need its id)
+    # 2. create new bet_item_clones based on "picks"
+    # 3. link the bet_item_clone to the corresponding betItem
+    # 4. link the bitItemClones to the the newly created ticket
+
+    def createTicket_for_user(user_id)  # should only be called for signed in users
+    	
+    	ticket = Ticket.new
+    	ticket.user_id = user_id
+    	ticket.status = 0
+    	ticket.stake = @stake
+    	ticket.payout = winnings
+    	ticket.odds = totalOdds
+    	ticket.save
+    	# create the bet_item clones
+    	(0..@picks_id.length-1).each do |index|
+    		
+    			BetItemClone.create(odds: @picks_odds[index], bet_item_id: @picks_id[index], ticket_id: ticket.id)
+    		
+
+    	end
+
     end
 
 

@@ -1,5 +1,10 @@
 Kaaywin::Application.routes.draw do
   
+  get "tickets/index"
+  get "tickets/show"
+  get "tickets/print"
+  get "tickets/cancel"
+  get "tickets/destroy"
   get "grid_test/test"
   get "betting/index"
   get "bets/destroy"
@@ -33,6 +38,7 @@ Kaaywin::Application.routes.draw do
    get "/betting/:id", to: 'betting#placebet', as: 'placebet'
    post '/betting/reset_bet_slip', to: 'betting#reset_bet_slip', as:'reset_bet_slip'
     post '/betting/update_stake', to: 'betting#update_stake', as:'update_stake'
+    post '/betting/issue_ticket', to: 'betting#issue_ticket', as: 'issue_ticket'
 
    post "/betting/remote_bet/:id", to: 'betting#remove_bet', as: 'remove_bet'
 
