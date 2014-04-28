@@ -16,26 +16,29 @@ Your betting slip is empty.  Please click on bets to add.
 <h2><%=session[:betSlip].eventNames[cursor]%><%=session[:betSlip].betNames[cursor]%></h2>
 
 
-<div class = "left"><%=session[:betSlip].picks_name[cursor]%></div>
-<div class = "right"><%=session[:betSlip].picks_odds[cursor].to_s+"  "%><%=link_to content_tag(:span,'', class: "glyphicon glyphicon-remove")+ "", remove_bet_path(cursor), method: :post, :remote => true, class: "glyphicon gyphicon-star remove_fields"%></div>
+<div class = "left"><slipGreen><%=session[:betSlip].picks_name[cursor]%></slipGreen></div>
+<div class = "right"><slipNumber><%=session[:betSlip].picks_odds[cursor].to_s+"  "%></slipNumber><%=link_to content_tag(:span,'', class: "glyphicon glyphicon-remove")+ "", remove_bet_path(cursor), method: :post, :remote => true, class: "glyphicon gyphicon-star remove_fields"%></div>
 
 <br>
 
-
+ <slipDivider>--------------------------------------</slipDivider>
 <%end%>
-<center>
-<div class="left">Total bets:</div>
-<div class="right"><%=session[:betSlip].picks_id.length %></div>
-<br>
-<div class="left">Total odds:</div>
-<div class="right"><%=session[:betSlip].totalOdds %></div>
-<br>
+
+<ul style ="list-style: none;">
 
 
-	
+<li> 
+<slipGreen>Total bets:</slipGreen>
+<div class="right"><slipNumber><%=session[:betSlip].picks_id.length %></slipNumber></div>
+</li>
 
-<div class="left">Stake:</div>
-<div class = "right"><%=text_field :stake,:amount, :value  => session[:betSlip].stake.to_s, :size =>4, :maxlength =>"4", :onchange => "$.ajax({
+<li>
+<slipGreen>Total odds:</slipGreen>
+<div class="right"><slipNumber><%=session[:betSlip].totalOdds %></slipNumber></div>
+</li>
+
+<li><slipGreen>Stake:</slipGreen>
+<div class = "right"><slipNumber><%=text_field :stake,:amount, :value  => session[:betSlip].stake.to_s, :size =>10, :maxlength =>"4", :onchange => "$.ajax({
 	type: 'POST',
 	url: 'update_stake',
 	data: {amount: $('#stake_amount').val()
@@ -44,15 +47,20 @@ Your betting slip is empty.  Please click on bets to add.
 	//do nothing
 	
 
-	});"%></div>
-<br>
-<br>
-<div class="left">Possible winnings:</div>
-<div class = "right"><%=session[:betSlip].winnings%></div>
-<br>
+	});"%></slipNumber></div>
+	</li>
+
+
+
+	
+<li>
+<slipGreenBold>Possible winnings:</slipGreenBold>
+<div class = "right"><slipNumber><%=session[:betSlip].winnings.to_s+ "  GMD" %></slipNumber></div>
+</li>
+</ul>
 <br>
 <center><%=link_to "Remove all", reset_bet_slip_path, method: :post,:remote => true%></center>
-</center>
+
 <%end%> 
 
 
