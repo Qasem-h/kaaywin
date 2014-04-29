@@ -1,2 +1,70 @@
-<h1>Tickets#show</h1>
-<p>Find me in app/views/tickets/show.html.erb</p>
+<div id = "replaceable">
+<div class= "container">
+<div class = "row">
+<div class = "span10">
+<% provide(:title, "Display ticket") %>
+<center> <h1>Ticket:</h1>
+
+</center> 
+
+<div class="kaaywintable1">
+
+		<table>
+	
+		<tr>
+		<td>ID</td>
+		<td>Date</td>
+		<td>User</td>
+		<td>Scrath Card</td>
+		<td>Odds</td>
+		<td>Stake</td>
+		<td>Return</td>
+		<td>Status</td>
+		<td>Printed</td>
+		<td>Actions</td>
+		</tr>
+
+		<tr>
+		<td><%=@ticket.id%></td>
+		<td><%=@ticket.created_at%></td>
+		<td><%=@ticket.user.name%></td>
+		<td><%=@ticket.scratchcard_id%></td>
+		<td><%=@ticket.odds%></td>
+		<td><%=@ticket.stake%></td>
+		<td><%=@ticket.payout%></td>
+		<td><%=@ticket.status%></td>
+		<td>0</td>
+		<td>Print|Delete|cancel</td>
+		</tr>
+		</table>
+	</div>
+		<br>
+		<table style = "width:900px" border=1>
+		<tr>
+		<th>Event</th>
+		<th>Pick</th>
+		<th>Odd</th>
+		<th>Correct</th>
+		<th>Status</th>
+		<th>Actions</th>
+		</tr>
+
+		<%@ticket.bet_item_clones.each do |bet_item_clone|%>
+		<tr>
+			<td><%=bet_item_clone.bet_item.bet.event.name%><%=bet_item_clone.bet_item.bet.bet_type.name%></td>
+			<td><%=bet_item_clone.bet_item.name%></td>
+			<td><%=bet_item_clone.odds%></td>
+			<td><%=bet_item_clone.bet_item.bet.correct%></td>
+			<td>**</td>
+			</tr>
+			<%end%>
+			</table>
+	</div>
+	</div>
+	</div>
+	</div>
+
+
+
+
+

@@ -3,15 +3,16 @@
 <td><%=ticket.id %></td>
 <td><%=ticket.created_at%></td>
 
-<td><%=ticket.user_id%></td>
+<td><%=ticket.user.name%></td>
+<td><%=ticket.scratchcard_id%></td>
 <td><%=ticket.odds%></td>
 <td><%=ticket.stake%></td>
 <td><%=ticket.payout%></td>
 <td>2</td>
 <td>1</td>
 
-<td><%= link_to "delete", "#", method: :delete, data: {confirm: "Are you sure?"} %>
-<%= link_to "edit", "#"  %></td>
+<td><%= link_to "delete", ticket, method: :delete, data: {confirm: "Are you sure?"} %>
+<%= link_to "view", display_ticket_path(ticket)  %></td>
 
 
 </tr>

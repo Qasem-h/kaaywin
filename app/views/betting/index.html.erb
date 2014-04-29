@@ -102,9 +102,11 @@
           
            
             <div class = "left"><betTitle><%=bet.bet_type.name%></betTitle></div>
+            <div class = "right">
            <%bet.bet_items.each do |bet_item| %>
-             <div class = "right"><%=link_to bet_item.odds.to_s ,placebet_path(bet_item.id), :class =>"btn btn-danager btn-mini", method: :get, :remote => true%></div>
+            <%=link_to bet_item.odds.to_s ,placebet_path(bet_item.id), :class =>"btn btn-danager btn-mini", method: :get, :remote => true%>
            <%end%>
+           </div>
            <br>
 
            <%else%>

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
 	belongs_to :role
 
+	has_many :tickets # a ticket can also belong to a scrathcard
+
 
 
 		def User.new_remember_token  # generates a random string

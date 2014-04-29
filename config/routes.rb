@@ -24,6 +24,7 @@ Kaaywin::Application.routes.draw do
   get "leagues/index"
   get "main/index"
   get "events/display/:id", to: 'events#show', as: 'display_event'
+    get "tickets/display/:id", to: 'tickets#show', as: 'display_ticket'
   get "events/results" , to:'events#results', as: 'results'
    get "leagues/events/:id" , to:'events#index', as: 'league_events'
   get "/leagues/:id", to: 'leagues#index', as: 'sport_leagues'
@@ -61,6 +62,7 @@ Kaaywin::Application.routes.draw do
     end
   end
 
+  resources :tickets
   resources :sports
   resources :bets
   resources :sessions, only: [:new, :create, :destroy]
