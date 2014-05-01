@@ -8,7 +8,7 @@
 <td><%=ticket.odds%></td>
 <td><%=ticket.stake%></td>
 <td><%=ticket.payout%></td>
-<td>2</td>
+<td><%=ticket.derivedStatus%></td>
 <td>1</td>
 
 <td><%= link_to "delete", ticket, method: :delete, data: {confirm: "Are you sure?"} %>

@@ -5,7 +5,8 @@
   
 
 	
-	<td><%= f.check_box :active %><%= f.label :name, f.object.name %></td>
+	<td><div class = "right" ><%= f.text_field :name, :disabled => true %></div><%= f.check_box :active %><%= f.label :name, f.object.name %>
+	</td>
 	
 	
 	</tr>

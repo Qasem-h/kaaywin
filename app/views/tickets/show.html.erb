@@ -32,7 +32,7 @@
 		<td><%=@ticket.odds%></td>
 		<td><%=@ticket.stake%></td>
 		<td><%=@ticket.payout%></td>
-		<td><%=@ticket.status%></td>
+		<td><%=@ticket.derivedStatus%></td>
 		<td>0</td>
 		<td>Print|Delete|cancel</td>
 		</tr>
@@ -46,7 +46,7 @@
 		<th>Odd</th>
 		<th>Correct</th>
 		<th>Status</th>
-		<th>Actions</th>
+		
 		</tr>
 
 		<%@ticket.bet_item_clones.each do |bet_item_clone|%>
@@ -55,7 +55,13 @@
 			<td><%=bet_item_clone.bet_item.name%></td>
 			<td><%=bet_item_clone.odds%></td>
 			<td><%=bet_item_clone.bet_item.bet.correct%></td>
-			<td>**</td>
+			<td><%if bet_item_clone.bet_item.bet.correct == bet_item_clone.bet_item.name%>
+			Won
+			<%else%>
+			Lost
+			<%end%>
+			</td>
+			
 			</tr>
 			<%end%>
 			</table>
