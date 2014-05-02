@@ -71,12 +71,22 @@ class BettingController < ApplicationController
   	end
 
   	def issue_ticket # issue the ticket
-  		session[:betSlip].createTicket_for_user(current_user.id)
-  		session[:betSlip].reset
+
+      # lets update the transactions table with what this user just spent
+      if current_user.balance >= session[:betSlip].stake
+        Transaction.create(amount: session[:betSlip].stake.to_f*-1, user_id: current_user.id, transaction_type: 1, comment: 'web entry')
+  		  session[:betSlip].createTicket_for_user(current_user.id)
+  		  session[:betSlip].reset
+
+      else 
+        flash.now[:warning] = "insufficient balance"
+          
+      end
   		respond_to do |format|
   			format.html
   			format.js
   		end
+
   	end
   end
 

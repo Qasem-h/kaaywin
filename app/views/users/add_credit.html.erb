@@ -1,0 +1,18 @@
+<% provide(:title, 'Add Credit') %>
+<div class = "itemForm">
+<h1>Add Credit for: <%=@user.name%> </h1>
+<div class = "row">
+	<div class = "span3 offset1">
+		<%=form_for @transaction, url: update_balance_path do |f| %>
+			<%=render 'shared/error_messages_transactions' %>
+			<%= f.label :amount %>
+			<%= f.text_field :amount %>
+			<%= f.label :comment %>
+			<%= f.text_field :comment %>
+			<%= f.hidden_field :user_id, :value => @user.id %>
+
+			<%=f.submit "Add Credit", class: "btn btn-large btn-primary" %>
+			<%end%>
+		</div>
+	</div>	
+	</div>

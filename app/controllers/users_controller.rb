@@ -18,6 +18,8 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page])
   end
 
+
+
   def register  # this method will be used by administror
   end
 
@@ -60,6 +62,29 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
 
+  def add_credit  # render the add credit for this user
+    @user = User.find(params[:id])
+    @transaction = Transaction.new
+  end
+
+
+  # The actual updating of the user's balance through credit addition is done by creating a new
+  # transaction object
+  def update_balance 
+    @transaction = Transaction.new(transaction_params)
+
+    if @transaction.save
+      flash[:success] = "credit sucessfully added"
+      redirect_to users_url
+    else
+      flash[:success] = "error"
+      redirect_to :back
+    end
+  end
+
+
+
+
  def permited_user_delete
   #only permit deleting of users if the logged in user is an admin or supervisor and logged in user has higher privilege than the deleted user and 
   # the logged in user is not the deleted user
@@ -91,5 +116,8 @@ private
     redirect_to(root_url) unless current_user.role == 1
   end
 
+  def transaction_params # 
+    params.require(:transaction).permit(:amount, :user_id, :comment)
+  end
 
 end

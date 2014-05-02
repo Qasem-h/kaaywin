@@ -4,13 +4,17 @@
 <td><%=link_to user.name, user %></td>
 <td><%=user.email %></td>
 <td><%=user.role.name%></td>
+<td><%=user.balance%></td>
 <td>
 <% if (current_user.role_id < user.role_id && !current_user?(user)) || current_user.role_id ==1 && !current_user?(user) %>
 <%= link_to "delete", user, method: :delete, data: {confirm: "Are you sure?"} %>
 
 <%= link_to "edit", edit_user_path(user) %>
-<else>
 
+<%end%>
+
+<%if current_user.role_id == 1 %>
+	<%= link_to "Add Credit", add_credit_path(user) %>
 <%end%>
 
 </tr>

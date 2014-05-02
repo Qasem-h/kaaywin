@@ -30,6 +30,9 @@ Kaaywin::Application.routes.draw do
   get "/leagues/:id", to: 'leagues#index', as: 'sport_leagues'
   get "leagues/", to: 'leagues#index', as: 'back_to_sport_leagues'
   get "/events/enter_empty_results", to: "events#enter_empty_results", as: "empty_results"
+  get "/users/add_credit/:id", to: "users#add_credit", as: "add_credit"
+
+  post "/users/update_balance", to: "users#update_balance", as: "update_balance"
  post "events/search"
  post "events/search_by_id"
   post "events/addbet"
@@ -55,6 +58,7 @@ Kaaywin::Application.routes.draw do
   resource :results
   resources :leagues
   resources :bet_types
+  resources :transactions
 
   resources :events do
     member do

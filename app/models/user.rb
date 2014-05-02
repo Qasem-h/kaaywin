@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 	belongs_to :role
 
 	has_many :tickets # a ticket can also belong to a scrathcard
+	has_many :transactions
 
 
 
@@ -19,6 +20,10 @@ class User < ActiveRecord::Base
 
 	def User.encrypt(token)
 		Digest::SHA1.hexdigest(token.to_s) # used to encrypt a random string
+	end
+
+	def balance  # this method is used to know how much money a user has lef
+		self.transactions.to_a.sum(&:amount)
 	end
 
 	
