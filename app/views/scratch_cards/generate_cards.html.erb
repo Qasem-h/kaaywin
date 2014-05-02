@@ -1,0 +1,27 @@
+<div id = "replaceable">
+<div class= "container">
+<div class = "row">
+<div class = "span10">
+
+<div class = "cardForm">
+
+			<%=form_tag(controller: "scratch_cards", action: "generate", method: "get" ) do %>
+          
+
+                 <%= label_tag(:q, "") %>
+                  <%= text_field_tag(:denom,'', :placeholder => 'denomination')%>
+                    <%= text_field_tag(:quantity,'', :placeholder => 'quantity')%>
+                  <%=submit_tag("Generate cards",class: "btn btn-small btn-primary")%>
+                  <%end%>
+
+  </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+
+
+
+
+

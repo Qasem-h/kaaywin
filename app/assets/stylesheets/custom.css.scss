@@ -426,6 +426,18 @@ body {
   box-shadow: 0 5px 10px 5px rgba(0,0,0,0.2);
 }
 
+/* form used for card generation page */
+.cardForm {
+    background:#111; 
+  width:150px;
+  margin:30px auto;
+  border-radius:1em;
+  border:3px solid #191919;
+  overflow:hidden;
+  position:relative;
+  box-shadow: 0 5px 10px 5px rgba(0,0,0,0.2);
+}
+
 .loginForm:after {
   content:"";
   display:block;

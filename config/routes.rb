@@ -38,7 +38,9 @@ Kaaywin::Application.routes.draw do
   post "events/addbet"
 
 
- get "/betting/test_image", to: 'betting#test_image', as: 'test_image'
+ get "/scratch_cards/generate_cards", to: 'scratch_cards#generate_cards', as: 'generate_cards'
+ get "/scratch_cards/print_card/:id", to: 'scratch_cards#print_card', as: 'print_card'
+ post "/scratch_cards/generate", to: 'scratch_cards#generate', as: 'generate'
    get "/betting/:id", to: 'betting#placebet', as: 'placebet'
    post '/betting/reset_bet_slip', to: 'betting#reset_bet_slip', as:'reset_bet_slip'
     post '/betting/update_stake', to: 'betting#update_stake', as:'update_stake'
@@ -70,6 +72,7 @@ Kaaywin::Application.routes.draw do
   resources :sports
   resources :bets
   resources :sessions, only: [:new, :create, :destroy]
+  resources :scratch_cards
 
   get "users/new"
   root 'admin#home'

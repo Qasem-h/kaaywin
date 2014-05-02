@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140501182532) do
+ActiveRecord::Schema.define(version: 20140502182806) do
 
   create_table "bet_item_clones", force: true do |t|
     t.integer  "bet_item_id"
@@ -79,6 +79,17 @@ ActiveRecord::Schema.define(version: 20140501182532) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "scratch_cards", force: true do |t|
+    t.string   "hidden_number"
+    t.float    "credit"
+    t.integer  "status"
+    t.integer  "ticket_id",     default: -1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "scratch_cards", ["ticket_id"], name: "index_scratch_cards_on_ticket_id", using: :btree
 
   create_table "sports", force: true do |t|
     t.string   "name"

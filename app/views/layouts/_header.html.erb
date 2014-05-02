@@ -36,9 +36,10 @@
                     Scratch card management <b class = "caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                    <li><%= link_to "List scratch card", "#" %> </li>
-                   <li><%= link_to "Create scratch card", "#" %> </li>
-                    <li><%= link_to "Search scratch card", "#" %> </li>
+                    <li><%= link_to "List unused scratch cards", scratch_cards_path %> </li>
+                    <li><%= link_to "List used scratch cards", "#" %> </li>
+                   <li><%= link_to "Create scratch cards", generate_cards_path%> </li>
+                    <li><%= link_to "Search for a scratch card", "#" %> </li>
                     <li class="divider"></li>
                     
                   </ul>

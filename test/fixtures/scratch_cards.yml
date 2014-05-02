@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hidden_number: MyString
+  credit: 1.5
+  status: 1
+  ticket_id: 1
+
+two:
+  hidden_number: MyString
+  credit: 1.5
+  status: 1
+  ticket_id: 1

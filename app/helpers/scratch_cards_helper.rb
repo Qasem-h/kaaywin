@@ -1,0 +1,2 @@
+module ScratchCardsHelper
+end

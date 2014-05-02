@@ -1,0 +1,17 @@
+
+<tr>
+<td><%=scratch_card.id%></td>
+<td><%=scratch_card.created_at%></td>
+<td><%=scratch_card.hidden_number%></td>
+<td><%=scratch_card.status%></td>
+<td><%=scratch_card.credit%></td>
+<td><%=scratch_card.ticket_id%></td>
+
+
+<td><%= link_to "delete", scratch_card, method: :delete, data: {confirm: "Are you sure?"} %>
+<%=link_to "print", print_card_path(scratch_card) %>
+</td>
+
+
+</tr>
+
