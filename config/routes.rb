@@ -39,12 +39,18 @@ Kaaywin::Application.routes.draw do
 
 
  get "/scratch_cards/generate_cards", to: 'scratch_cards#generate_cards', as: 'generate_cards'
+
+ post "/scratch_cards/verify_card", to: 'scratch_cards#verify_card', as: 'verify_card'
+ post "/scratch_cards/unverify_card", to: 'scratch_cards#unverify_card', as: 'unverify_card'
  get "/scratch_cards/print_card/:id", to: 'scratch_cards#print_card', as: 'print_card'
  post "/scratch_cards/generate", to: 'scratch_cards#generate', as: 'generate'
    get "/betting/:id", to: 'betting#placebet', as: 'placebet'
    post '/betting/reset_bet_slip', to: 'betting#reset_bet_slip', as:'reset_bet_slip'
     post '/betting/update_stake', to: 'betting#update_stake', as:'update_stake'
     post '/betting/issue_ticket', to: 'betting#issue_ticket', as: 'issue_ticket'
+
+    post '/betting/front_signin', to: 'betting#front_signin', as: 'front_signin'
+     post '/betting/front_signout', to: 'betting#front_signout', as: 'front_signout'
 
    post "/betting/remote_bet/:id", to: 'betting#remove_bet', as: 'remove_bet'
 

@@ -9,4 +9,20 @@ class ScratchCard < ActiveRecord::Base
 	end
 
 
+	#a scratch card is deemed verified if its hidden number exists and its status = 1( printed)
+
+	def self.verify(hidden_number)
+		
+		card = ScratchCard.where("hidden_number = ?  AND status = ?", hidden_number, 1) # this means that the card is activated or in the marke
+		 
+		 if card.blank? 
+		 	return false
+		 else
+		 	return true
+		 end
+	end
+
+		
+
+
 end

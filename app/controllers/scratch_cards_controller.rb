@@ -44,5 +44,32 @@ class ScratchCardsController < ApplicationController
 		end
 	end
 
+	# this method is used to verify a card and will thus use the session helper to set
+	# the card_verified status to true
+
+	# when a scratch card is verified its almost like a logged-in user
+	# session environment needs to be updated
+	# we also need to update the betSlips Stake
+	def verify_card
+
+		card = ScratchCard.find_by hidden_number: params[:hidden_number]
+
+		if ScratchCard.verify(params[:hidden_number])
+			sign_in_card(card)
+			flash.now[:success] = "card sucessfully verified. You can place your bets!"
+			
+		else
+			flash.now[:success] = "card sucessfully verified. You can place your bets!"
+
+		 
+	   end
+	   redirect_to action: 'index', controller: 'betting'
+	end
+
+	def unverify_card
+		sign_out_card
+		redirect_to action: 'index', controller: 'betting'
+	end
+
 
 end

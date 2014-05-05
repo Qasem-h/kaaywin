@@ -19,6 +19,10 @@ class BettingController < ApplicationController
   def placebet
   	@front_office = true
   	session[:betSlip] = BetSlip.new unless !session[:betSlip].nil?
+
+    if session[:current_card] # if a scratch-card is verified update the betSLip
+      session[:betSlip].stake = session[:current_card].credit
+    end
   	@emptySlip = false
   
 
@@ -73,20 +77,50 @@ class BettingController < ApplicationController
   	def issue_ticket # issue the ticket
 
       # lets update the transactions table with what this user just spent
-      if current_user.balance >= session[:betSlip].stake
-        Transaction.create(amount: session[:betSlip].stake.to_f*-1, user_id: current_user.id, transaction_type: 1, comment: 'web entry')
-  		  session[:betSlip].createTicket_for_user(current_user.id)
-  		  session[:betSlip].reset
+      # but we need to decide if this was a scratch card transaction or
+      # regular one
 
-      else 
-        flash.now[:warning] = "insufficient balance"
+      if !session[:current_card]  # this is a regular logged in user
+        if current_user.balance >= session[:betSlip].stake
+          Transaction.create(amount: session[:betSlip].stake.to_f*-1, user_id: current_user.id, transaction_type: 1, comment: 'web entry')
+  		   session[:betSlip].createTicket_for_user(current_user.id)
+  
+        else 
+          flash.now[:warning] = "insufficient balance"
           
+        end
+      else  # this has to be a scratch card
+          puts ('*********using a card*******')
+          session[:betSlip].createTicket_for_card(session[:current_card].id)
+          session[:current_card].status = 2  # set the card to used
+          session[:current_card].save  
+          sign_out_card  # sign the card out as its been used
       end
+        session[:betSlip].reset
   		respond_to do |format|
   			format.html
   			format.js
   		end
 
   	end
+
+ # this method is invoked only when the user signs in from the front end
+    def front_signin
+          user = User.find_by(email: params[:session][:email].downcase)
+        if user && user.authenticate(params[:session][:password])
+          sign_in user
+      
+        else
+         flash.now[:error] = 'Invalid email/ password combination'
+      
+        end
+        redirect_to action: 'index'
+    end
+
+    # this method is invoked only when the user signs out from the front end
+    def front_signout 
+      sign_out
+      redirect_to action: 'index'
+    end
   end
 

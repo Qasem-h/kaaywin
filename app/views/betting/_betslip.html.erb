@@ -42,6 +42,8 @@ Your betting slip is empty.  Please click on bets to add.
 </li>
 
 <li><slipGreen>Stake:</slipGreen>
+
+<%if !session[:current_card] %>
 <div class = "right"><slipNumber><%=text_field :stake,:amount, :value  => session[:betSlip].stake.to_s, :size =>10, :maxlength =>"4", :onchange => "$.ajax({
 	type: 'POST',
 	url: 'update_stake',
@@ -53,7 +55,13 @@ Your betting slip is empty.  Please click on bets to add.
 
 	});"%></slipNumber></div>
 	</li>
+<%end%>
 
+<% if session[:current_card] %>
+<div class = "right"><slipNumber><%=text_field :stake,:amount, :value  => session[:betSlip].stake.to_s, :size =>10, :maxlength =>"4", :disabled => true %>
+</slipNumber>
+</div>
+<%end%>
 
 
 	
@@ -63,7 +71,7 @@ Your betting slip is empty.  Please click on bets to add.
 </li>
 </ul>
 <br>
-<%if session[:betSlip].picks_id.length >=3 && signed_in? %>
+<%if session[:betSlip].picks_id.length >=3 && (signed_in? || session[:current_card]) %>
 <center><%=link_to "place bet",issue_ticket_path, :class =>"btn btn-danager", method: :post, :remote => true%>
 </center>
 <%end%>

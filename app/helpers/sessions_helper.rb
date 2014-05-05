@@ -5,13 +5,29 @@ module SessionsHelper
 		cookies.permanent[:remember_token]  = remember_token
 		user.update_attribute(:remember_token, User.encrypt(remember_token))
 		self.current_user = user
+		sign_out_card # signining users and cards are mutually exclusive
 	end
 
+	# assign this session with a scartch card. Should only be called when a card is
+	# verified
+	def sign_in_card(scratch_card)
+		session[:current_card] = scratch_card
+	end
+
+	# when a card is used it needs to be signed out
+	def sign_out_card
+		session[:current_card]  = nil
+		
+	end
 
 	def current_user=(user)    #used to assign current_user to the signed in user
 		@current_user = user
 	end
 
+
+	def current_card=(card)
+		@current_card = card
+	end
 	def current_user
 		remember_token = User.encrypt(cookies[:remember_token])  # get the remember token from the browser
 
@@ -22,10 +38,13 @@ module SessionsHelper
 		!current_user.nil?
 	end
 
+	
+
 	def sign_out
 		current_user.update_attribute(:remember_token, User.encrypt(User.new_remember_token))
 		cookies.delete(:remember_token)
 		self.current_user = nil
+		sign_out_card
 	end
 	# Store the url the subscriber was trying to access before being re-directed to sign in
 	def store_location

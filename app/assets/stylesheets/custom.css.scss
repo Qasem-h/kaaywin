@@ -34,6 +34,19 @@ border-radius: 0px;
 
 }
 
+/* small table on main website for loggen details */
+
+#miniTable {
+  td {
+    border-collapse: separate;
+    padding: 10px;
+
+  }
+  background-color: #080808;
+  color: #FFFFFF;
+
+}
+
 
 #fixtures
 {
@@ -47,6 +60,15 @@ border-radius: 0px;
    opacity: .9;
    
     margin-bottom: 10px;
+
+}
+
+#frontOfficeBar
+{
+  border: 0;
+   background-color: transparent;
+   
+ 
 
 }
 

@@ -108,6 +108,7 @@ def addPick(betItemID, betItemName,betItemOdds,betName,eventName)
     	ticket = Ticket.new
     	ticket.user_id = user_id
     	ticket.status = 0
+    	ticket.scratch_card_id = -1
     	ticket.stake = @stake
     	ticket.payout = winnings
     	ticket.odds = totalOdds
@@ -121,6 +122,24 @@ def addPick(betItemID, betItemName,betItemOdds,betName,eventName)
     	end
 
     end
+
+    def createTicket_for_card(card_id)
+    	ticket = Ticket.new
+    	ticket.user_id = -1 # the default ticket ID for tickets not placed by logged in users
+    	ticket.status = 0
+    	ticket.scratch_card_id = card_id
+    	ticket.stake = @stake
+    	ticket.payout = winnings
+    	ticket.odds = totalOdds
+    	ticket.save
+    	(0..@picks_id.length-1).each do |index|
+    		
+    			BetItemClone.create(odds: @picks_odds[index], bet_item_id: @picks_id[index], ticket_id: ticket.id)
+    		
+
+    	end
+    end
+
 
 
     def reset

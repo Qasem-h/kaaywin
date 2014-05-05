@@ -1,31 +1,106 @@
 
+<div id = "replaceableLoginStatus">
+
+ <div class="navbar navbar-fixed-top navbar-inverse" role="navigation" id = 'frontOfficeBar'>
+
+<ul class="nav pull-right">
+
+<%if !signed_in? %>
+
+
+
+
+     
+
+    
+    
+      
+        
+        
+        <table border="0", cellpadding="0px">
+        <tr>
+         <%= form_for(:session, url: front_signin_path) do |f| %>
+        
+      <td><%=f.text_field :email, :placeholder =>"username" %></td>  <td><%=f.password_field :password, :placeholder => "password" %></td>
+     
+      <td>
+      <center>
+
+      <%=f.submit "Sign in"%>
+       <% end %>
+      </center>
+      </td>
+      </tr>
+      <%if !session[:current_card] %>
+      <tr>
+     
+         
+      <%=form_tag(controller: "scratch_cards", action: "verify_card", method: "get") do %>
+       <td><%=label_tag(:label, "Verify a Scratch card") %></td>
+       <td><%=password_field_tag(:hidden_number,'', :placeholder => 'code') %></td>
+       <td><%=submit_tag("Verify",class: "btn btn-small btn-primary")%></td>
+       <%end%>
+       </td>
+       </tr>
+       <%end%>
+      </table>
+
+  
+
+<%end%>
+
+
+<%if session[:current_card] %>
+
+
+    
+        <table id = "miniTable">
+        <tr>
+        
+      <td>Scratch Card Activated</td>  <td><%=session[:current_card].credit.to_s+ ' GMD'%></td>
+     
+      <td>
+      <center>
+      <%=link_to  "Cancel", unverify_card_path, method: :post %>
+      </center>
+      </td>
+      </tr>
+      </table>
+
+<%end%>
+<%if signed_in? %>
+
+  
+     
+
+    
+    
+      
+        
+         
+        <table id = "miniTable">
+        <tr>
+        
+      <td><%=current_user.name%></td>  <td><%=current_user.balance.to_s + ' GMD'%></td>
+     
+      <td>
+      <center>
+      <%=link_to  "Sign out", front_signout_path, method: :post %>
+      </center>
+      </td>
+      </tr>
+      </table>
+
+
+<%end%>
+
+</ul>
+</div>
+</div>
 
 <br>
+<br>
 
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container-fluid">
-
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-
-      <a class="brand" href="#">Project name</a>
-      <div class="nav-collapse">
-        <ul class="nav">
-
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
-      </div><!--/.nav-collapse -->
-
-    </div>
-  </div>
-</div>
 
 <div class="container-fluid">
   <div class="row-fluid">
@@ -137,7 +212,7 @@
          
          <%end%>
        <%end%>
-        <p><a class="btn btn-primary btn-large">Learn more »</a></p>
+       
       </div>
     
 
@@ -167,7 +242,7 @@
       
   </div><!--/row-->
 
- 
+ <div class="alert alert-error"><%=flash[:success]%></div>
 
 </div><!--/.fluid-container-->
 

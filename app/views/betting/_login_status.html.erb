@@ -1,0 +1,55 @@
+<div id = "replaceableLoginStatus">
+<%if !signed_in? %>
+<div class="span6 offset11 navbar navbar-fixed-top">
+  
+     
+
+    
+    
+      
+        
+         <%= form_for(:session, url: sessions_path) do |f| %>
+        <table border="0">
+        <tr>
+        
+      <td><%=f.text_field :email, :placeholder =>"username" %></td>  <td><%=f.password_field :password, :placeholder => "password" %></td>
+     
+      <td>
+      <center>
+      <%=f.submit "Sign in" %>
+      </center>
+      </td>
+      </tr>
+      </table>
+
+    <% end %>
+</div>
+<%end%>
+
+<%if signed_in? %>
+<div class="span6 offset11 navbar navbar-fixed-top">
+  
+     
+
+    
+    
+      
+        
+         
+        <table id = "miniTable">
+        <tr>
+        
+      <td><%=current_user.name%></td>  <td><%=current_user.balance.to_s + ' GMD'%></td>
+     
+      <td>
+      <center>
+      <%=link_to  "Sign out", front_signout_path, method: :post  %>
+      </center>
+      </td>
+      </tr>
+      </table>
+
+</div>
+<%end%>
+
+</div>
