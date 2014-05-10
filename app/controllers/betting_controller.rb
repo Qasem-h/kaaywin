@@ -83,15 +83,16 @@ class BettingController < ApplicationController
       if !session[:current_card]  # this is a regular logged in user
         if current_user.balance >= session[:betSlip].stake
           Transaction.create(amount: session[:betSlip].stake.to_f*-1, user_id: current_user.id, transaction_type: 1, comment: 'web entry')
-  		   session[:betSlip].createTicket_for_user(current_user.id)
+  		   # return the ticket for printing
+         @ticket = session[:betSlip].createTicket_for_user(current_user.id)
   
         else 
           flash.now[:warning] = "insufficient balance"
           
         end
       else  # this has to be a scratch card
-          puts ('*********using a card*******')
-          session[:betSlip].createTicket_for_card(session[:current_card].id)
+         # return the ticket for printing
+          @ticket = session[:betSlip].createTicket_for_card(session[:current_card].id)
           session[:current_card].status = 2  # set the card to used
           session[:current_card].save  
           sign_out_card  # sign the card out as its been used

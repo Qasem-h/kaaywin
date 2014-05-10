@@ -176,6 +176,19 @@ font-weight:bold;
 
 }
 
+previewFont
+
+{
+font-size:10px;
+
+}
+
+ticketHeader
+{
+  font-size:20px;
+  font-weight:bold;
+}
+
 
 f3
 {
@@ -189,6 +202,56 @@ ul
   list-style-type: none;
   padding: 0;
   margin: 0;
+}
+
+/* wrapper used for preview ticket before printing */
+
+#wrapper {padding: 0%;}
+
+#wrap {
+
+  position: relative;
+  margin: 0 auto;
+  width: 50%;
+
+}
+
+/* table used for printed tickets on screen from betting page */
+
+.ticketTable table {
+  
+  border: 13px;
+  cellpading: 5px;
+  table-layout: fixed;
+
+
+
+}
+
+.ticketTableHeader table {
+  
+  border: 3px;
+  width : 700px;
+  table-layout: fixed;
+
+
+
+}
+
+ticketTableHeader th,td {
+  
+  width: 100px;
+  word-wrap: break-word;
+  font-size:10px
+
+}
+
+.ticketTable th,td {
+  
+  width: 100px;
+  word-wrap: break-word;
+  font-size:10px
+
 }
 
 /* General table used to render all lists */

@@ -1,0 +1,94 @@
+ <div id = 'replaceableFixtures'>
+ <div class="span5 span-fixed-sidebar" id="fixtures">
+       <table class = "table table-hover table-striped table-bordered width:10px;" id = 'fheader'><thead><tr><th>Ticket Placed</th></tr></thead></table>
+
+      <div id = "wrapper">
+      <div id = "wrap">
+      <center>
+      <ticketHeader>Kaaywin - Sports Betting</ticketHeader>
+       <div class = "ticketTableHeader">
+       <table>
+       <tr>
+       <td>
+        <div class = "left">Date and Time</div>
+        <div class = "right"><%=@ticket.created_at%></div>
+        </td>
+        </tr>
+        
+        
+       
+        
+         
+        <tr>
+        <td>
+       <div class = "left">Ticket ID</div>
+        <div class = "right"><%=@ticket.id%></div>
+      </td>
+      </tr>
+      </table>
+      </div>
+      
+     
+       
+
+       
+
+      <div class="ticketTable">
+      <table>
+    <tr>
+    <th>Event ID/Date</th>
+     <th>Event Name </th>
+    <th>Pick</th>
+    <th>Odd</th>
+    
+    
+    </tr>
+    </table>
+    <table>
+    ------------------------------------------------------
+    <%@ticket.bet_item_clones.each do |bet_item_clone|%>
+    <tr>
+      <td>id:<br><%=bet_item_clone.bet_item.bet.event.id%>
+      <br>
+      <%=bet_item_clone.bet_item.bet.event.created_at%></td>
+      <td>  <%=bet_item_clone.bet_item.bet.event.name%>
+      
+        <%=bet_item_clone.bet_item.bet.bet_type.name%></td>
+      <td><%=bet_item_clone.bet_item.name%></td>
+      <td><%=bet_item_clone.odds%></td>
+     
+      
+      </tr>
+      <%end%>
+      </table>
+      </div>
+    ------------------------------------------------------
+           <previewFont>
+           <div class = "right">Combination:<%=' '+ @ticket.bet_item_clones.length.to_s%></div>
+           <br>
+       
+            <div class = "right">Total:<%=' '+ @ticket.odds.to_s%></div>
+            <br>
+            <div class = "right">Amount:<%= ' '+ @ticket.stake.to_s%></div>
+            <br>
+            <div class = "right">Return:<%= ' '+@ticket.payout.to_s%></div>
+
+            <br>
+            <br>
+         
+            Your ticket has been successfully created!
+            <br>
+            Your ticket number is <%=' '+@ticket.id.to_s%>
+            </previewFont>
+            <br>
+         
+            <center><%=button_to 'Print', "#"%></center>
+         
+            </center>
+            </div>
+      </div> <!---- container>
+
+      </div> <!--- fixtures -->
+
+       </div>
+       </div>

@@ -120,6 +120,7 @@ def addPick(betItemID, betItemName,betItemOdds,betName,eventName)
     		
 
     	end
+    	return ticket
 
     end
 
